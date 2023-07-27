@@ -270,3 +270,159 @@ html {
 	position: absolute;
 	opacity: 0;
 }
+
+.books-block {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 40px 60px 40px 20px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.first-book {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 15px 0 0 20px;
+	max-width: 550px;
+	border: 1px solid black;
+}
+
+.book-title {
+	position: relative;
+	margin: 0;
+	font-family: "Forum", serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; 
+	letter-spacing: 2px;
+	text-transform: capitalize;
+	color: #000000;
+}
+
+.book-title::before {
+	content: '';
+	position: absolute;
+	top: 40px;
+	width: 60px;
+	height: 1px;
+	background-color: #BB945F;
+}
+
+.book-name {
+	margin: 20px 0;
+	font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #000000;
+}
+
+.book-author {
+	text-transform: capitalize;
+}
+
+.book-description {
+	width: 355px;
+	margin: 0 175px 0 0;
+	font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px;
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+.button-buy {
+	width: 75px;
+	height: 30px;
+	margin-top: 15px;
+	border: 1px solid #000000;
+	border-radius: 2px;
+	margin-bottom: 15px;
+	background-color: #ffffff;
+	transition: 0.2s ease-in;
+	cursor: pointer;
+}
+
+.button-buy:hover {
+	background-color: #BB945F;
+	border: 1px solid #BB945F;
+}
+
+.text-button {
+	text-align: center;
+	font-family: "Inter", sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: #0C0C0E;
+	line-height: normal;
+}
+
+.image-book {
+	position: absolute;
+	display: block;
+	top: 255px;
+	left: 390px;
+}
+
+.second-book {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 15px 0 0 20px;
+	max-width: 550px;
+	border: 1px solid black;
+}
+
+.second-book .button-buy {
+	margin-top: auto;
+}
+
+.third-book {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 15px 0px 0px 20px;
+	border: 1px solid black;
+	margin-top: 40px;
+	max-width: 550px;
+}
+
+.fourth-book {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 15px 0px 0px 20px;
+	border: 1px solid black;
+	margin-top: 40px;
+	max-width: 550px;
+}
+
+.button-own {
+	width: 75px;
+	height: 30px;
+	margin-bottom: 15px;
+	margin-top: auto;
+	border: 1px solid #BB945F;
+	border-radius: 2px;
+	background-color: #ffffff;
+}
+
+.text-own {
+	font-family: "Inter";
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 1px;
+	color: #BB945F;
+}
