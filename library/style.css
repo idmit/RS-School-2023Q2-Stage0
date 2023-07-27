@@ -116,3 +116,86 @@ html {
 	text-transform: uppercase;
 	z-index: 1;
 }
+
+.section {
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.section-title {
+	position: relative;
+	margin-top: 20px;
+	font-family: "Forum", serif;
+	text-align: center;
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 40px;
+	letter-spacing: 2px;
+	text-transform: capitalize;
+	color: #0C0C0E;
+}
+
+.section-title::after {
+	content: '';
+	position: absolute;
+	top: 60px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 50px;
+	height: 1px;
+	background-color: #0C0C0E;
+}
+
+.section-text {
+	margin: 60px 0 20px;
+	text-align: center;
+	font-family: "Inter", sans-serif;
+	font-size: 20px;
+	line-height: 40px;
+	color: #000000;
+}
+
+.section-photo {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 25px;
+	margin: 0px 20px 35px;
+}
+
+.hidden {
+	display: none;
+}
+
+.image-item {
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 40px;
+}
+
+.control {
+	display: flex;
+	width: 26px;
+	height: 26px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.circle {
+	display: block;
+	margin: 0 auto;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: #0c0c0e;
+}
+
+.active-circle {
+	background-color: #bb945f;
+}
