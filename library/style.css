@@ -158,9 +158,9 @@ html {
 
 .section-photo {
 	display: flex;
-	flex-wrap: wrap;
 	gap: 25px;
 	margin: 0px 20px 35px;
+	overflow: hidden;
 }
 
 .hidden {
@@ -286,6 +286,7 @@ html {
 	flex-direction: column;
 	padding: 15px 0 0 20px;
 	max-width: 550px;
+	height: 555px;
 	border: 1px solid black;
 }
 
@@ -328,8 +329,7 @@ html {
 }
 
 .book-description {
-	width: 355px;
-	margin: 0 175px 0 0;
+	margin: 0 172.5px 0 0;
 	font-family: "Inter", sans-serif;
 	font-size: 15px;
 	font-style: normal;
@@ -342,7 +342,7 @@ html {
 .button-buy {
 	width: 75px;
 	height: 30px;
-	margin-top: 15px;
+	margin-top: auto;
 	border: 1px solid #000000;
 	border-radius: 2px;
 	margin-bottom: 15px;
@@ -380,6 +380,7 @@ html {
 	flex-direction: column;
 	padding: 15px 0 0 20px;
 	max-width: 550px;
+	height: 555px;
 	border: 1px solid black;
 }
 
@@ -395,6 +396,7 @@ html {
 	border: 1px solid black;
 	margin-top: 40px;
 	max-width: 550px;
+	height: 555px;
 }
 
 .fourth-book {
@@ -405,6 +407,7 @@ html {
 	border: 1px solid black;
 	margin-top: 40px;
 	max-width: 550px;
+	height: 555px;
 }
 
 .button-own {
@@ -425,4 +428,10 @@ html {
 	line-height: normal;
 	letter-spacing: 1px;
 	color: #BB945F;
+}
+
+.spring-container,
+.summer-container,
+.autumn-container {
+	display: none;
 }
