@@ -748,3 +748,47 @@ html {
 	align-items: center;
 	margin-bottom: 22px;
 }
+
+.footer-rss {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 22px;
+	margin-top: 44.3px;
+	margin-bottom: 44px;
+}
+
+.footer-number {
+	font-family: "Inter", sans-serif;
+	text-align: center;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	letter-spacing: 2px;
+	color: #ffffff;
+}
+
+.footer-logo {
+	font-family: "Inter", sans-serif;
+	text-align: center;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	letter-spacing: 2px;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.footer-username {
+	text-align: center;
+	font-family: "Inter", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; /* 200% */
+	letter-spacing: 2px;
+	text-decoration: none;
+	color: #ffffff;
+}
