@@ -200,6 +200,10 @@ html {
 	background-color: #bb945f;
 }
 
+.favorites-title {
+	margin-top: 15px;
+}
+
 .paragraph-favorites {
 	margin-left: 20px;
 	margin-top: 61px;
@@ -437,7 +441,7 @@ html {
 }
 
 .coffee-text {
-	margin-top: 59px;
+	margin-top: 61px;
 	margin-bottom: 40px;
 	letter-spacing: 2px;
 }
@@ -729,7 +733,7 @@ html {
 }
 
 .footer-text {
-	margin: 0px 0px 9.3px;
+	margin: 0px 0px 8px;
 	font-family: "Inter", sans-serif;
 	font-size: 15px;
 	font-style: normal;
@@ -746,7 +750,7 @@ html {
 
 .center-frame {
 	align-items: center;
-	margin-bottom: 22px;
+	margin-bottom: 23px;
 }
 
 .footer-rss {
