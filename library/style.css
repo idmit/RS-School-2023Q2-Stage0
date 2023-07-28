@@ -523,3 +523,52 @@ html {
 	width: 212px;
 }
 
+.contacts-info {
+	display: flex;
+	justify-content: space-between;
+	margin: 61px 20px 0px 20px;
+	padding-bottom: 40px;
+}
+
+.contacts-title {
+	margin: 0px 0px 40px 0px;
+	font-family: "Inter", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px; /* 200% */
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+.contacts-paragraph {
+	font-family: "Inter", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; /* 200% */
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+.contacts-title-margin {
+	margin-top: 40px;
+	font-family: "Inter", sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px; /* 200% */
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+.contacts-tel {
+	text-decoration: none;
+	color: #000000;
+}
+
+.contacts-email {
+	text-decoration: none;
+	color: #000000;
+	font-weight: bold;
+}
