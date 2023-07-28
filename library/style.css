@@ -721,4 +721,30 @@ html {
 	background-color: #0C0C0E;
 }
 
+.footer-frame {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	color: #ffffff;
+}
 
+.footer-text {
+	margin: 0px 0px 9.3px;
+	font-family: "Inter", sans-serif;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 133.333% */
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.social {
+	display: flex;
+	gap: 15px;
+}
+
+.center-frame {
+	align-items: center;
+	margin-bottom: 22px;
+}
