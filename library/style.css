@@ -659,3 +659,57 @@ html {
 	letter-spacing: 1px;
 }
 
+.get-card-title {
+	margin-bottom: 35px;
+	font-family: "Forum", serif;
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0.6px;
+}
+
+.text-card {
+	font-family: "Inter", sans-serif;
+	margin-bottom: 35px;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; /* 200% */
+	letter-spacing: 0.4px;
+}
+
+.button-get-card {
+	width: 75px;
+	height: 30px;
+	padding: 4px 0;
+	margin-right: 20px;
+	text-align: center;
+	border: 1px solid #000000;
+	border-radius: 2px;
+	background-color: #ffffff;
+	cursor: pointer;
+	transition: 0.2s ease-in;
+}
+
+.button-get-card:hover {
+	background-color: #BB945F;
+	border: 1px solid #BB945F;
+}
+
+.button-get-card:last-child {
+	margin-right: 0;
+}
+
+.button-get-text {
+	font-family: "Inter", sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 1px;
+}
+
+.get-card {
+	text-align: right;
+}
