@@ -572,3 +572,9 @@ html {
 	color: #000000;
 	font-weight: bold;
 }
+
+.library-card {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 20px 41px 20px;
+}
