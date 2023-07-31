@@ -218,13 +218,13 @@ html {
 .favorites-choice {
 	display: flex;
 	align-items: center;
-	width: 716px;
-	justify-content: space-between;
 	padding-top: 20px;
 	padding-left: 20px;
 }
 
 .favorites-text {
+	margin-right: 85px;
+	padding: 5px;
 	font-family: "Inter", sans-serif;
 	font-size: 20px;
 	font-style: normal;
@@ -238,7 +238,7 @@ html {
 	display: inline-block;
 	width: 17px;
 	height: 17px;
-	margin-right: 14px;
+	margin-right: 11.7px;
 	padding: 5px;
 	border: 2px solid #000000;
 	border-radius: 50%;
@@ -756,8 +756,8 @@ html {
 	list-style-type: none;
 }
 
-.social-link:hover > svg {
-  transform: translate(2px, 2px);
+.social-link:hover svg {
+  transform: scale(1.1);
 }
 
 .center-frame {
