@@ -218,13 +218,13 @@ html {
 .favorites-choice {
 	display: flex;
 	align-items: center;
+	width: 716px;
+	justify-content: space-between;
 	padding-top: 20px;
 	padding-left: 20px;
 }
 
 .favorites-text {
-	margin-right: 85px;
-	padding: 5px;
 	font-family: "Inter", sans-serif;
 	font-size: 20px;
 	font-style: normal;
@@ -238,7 +238,7 @@ html {
 	display: inline-block;
 	width: 17px;
 	height: 17px;
-	margin-right: 11.7px;
+	margin-right: 14px;
 	padding: 5px;
 	border: 2px solid #000000;
 	border-radius: 50%;
@@ -571,6 +571,11 @@ html {
 	color: #000000;
 }
 
+.contacts-tel:hover, .contacts-email:hover, .footer-link:hover {
+	color: #BB945F;
+	transition: 0.2s ease;
+}
+
 .contacts-email {
 	text-decoration: none;
 	color: #000000;
@@ -749,6 +754,10 @@ html {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+}
+
+.social-link:hover > svg {
+  transform: translate(2px, 2px);
 }
 
 .center-frame {
