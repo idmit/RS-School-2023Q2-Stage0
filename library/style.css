@@ -844,3 +844,42 @@ html {
 	text-decoration: none;
 	color: #ffffff;
 }
+
+@media (max-width: 1390px) {
+	.section-photo {
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+
+	.hidden-circle {
+		display: flex;
+	}
+
+	.image-item-2, .image-item-3 {
+		display: none;
+	}
+
+	.image-item-1 {
+		margin: 0 58px 0 58px;
+	}
+
+	.button-arrow {
+		display: flex;
+		align-items: center;
+	}
+
+	.arrow {
+		margin-top: 43px;
+	}
+}
+
+@media (max-width: 1220px) {
+	
+	.books-block {
+		justify-content: center;
+	}
+
+	.favorites-choice {
+		justify-content: center;
+	}
+}
