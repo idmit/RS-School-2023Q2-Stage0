@@ -301,11 +301,17 @@ html {
 }
 
 .favorites-label {
-	margin-right: 85px;
+	min-width: 130px;
+	margin-right: 62px;
 }
 
 .favorites-label:last-child {
 	margin-right: 0;
+	min-width: 115px;
+}
+
+.favorites-label:nth-child(3) {
+	margin-right: 74px;
 }
 
 .favorites-text {
@@ -783,7 +789,7 @@ html {
 	width: 75px;
 	height: 30px;
 	padding: 4px 0;
-	margin-right: 20px;
+	margin-right: 16px;
 	text-align: center;
 	border: 1px solid #000000;
 	border-radius: 2px;
@@ -818,7 +824,7 @@ html {
 .footer {
 	max-width: 1440px;
 	height: 250px;
-	padding: 20px 20px 0px;
+	padding: 19px 20px 0px;
 	background-color: #0C0C0E;
 }
 
