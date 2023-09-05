@@ -43,8 +43,10 @@ const firstImg = carousel.querySelectorAll('.image-item')[0];
 const arrows = document.querySelectorAll('.arrow');
 const buttonArrow = document.querySelectorAll('.button');
 
+// текущий счетчик
 let currentIndex = 0;
 
+// добавляем отслеживание события на кнопку
 prevButton.addEventListener('click', prevSlide);
 nextButton.addEventListener('click', nextSlide);
 
@@ -120,42 +122,63 @@ dots.forEach((circle, i) => {
 
 // tabs start
 document.addEventListener('DOMContentLoaded', () => {
-	const tabs = () => {
-		const head = document.querySelector('.tabs__head');
+	// объявляем основную функцию для вкладок, чтобы вся логика была в одном месте
+	const tabs = () => { 
+		// ищем элемент с кнопками и записываем в константу
+		const head = document.querySelector('.tabs__head'); 
+		// ищем элемент с контентом и записываем в константу
 		const body = document.querySelector('.tabs__body');
 
-		const getActiveTabName = () => {
-			return head.querySelector('.tabs__caption_active').dataset.tab;
+		// объявляем функцию для получения названия активной вкладки
+		const getActiveTabName = () => { 
+			// возвращаем значение data-tab активной кнопки
+			return head.querySelector('.tabs__caption_active').dataset.tab; 
+			
 		}
 
+		// объявляем функцию для установки активного элемента контента
 		const setActiveContent = () => {
+			 // если уже есть активный элемент контента
 			if (body.querySelector('.tabs__content_active')) {
+				// то скрываем его
 				body.querySelector('.tabs__content_active').classList.remove('tabs__content_active')
 			}
+			// затем ищем элемент контента, у которого значение data-tab совпадает со значением data-tab активной кнопки и отображаем его
 			body.querySelector(`[data-tab=${getActiveTabName()}]`).classList.add('tabs__content_active');
 		}
-
-		if (!head.querySelector('.tabs__caption_active')) {
-			head.querySelector('.tabs__caption').classList.add('tabs__caption_active');
+		 // проверяем при загрузке страницы, есть ли активная вкладка
+		if (!head.querySelector('.tabs__caption_active')) { // если активной вкладки нет
+			// то делаем активной по-умолчанию первую вкладку
+			head.querySelector('.tabs__caption').classList.add('tabs__caption_active'); 
 		}
 
+		// устанавливаем активный элемент контента в соответствии с активной кнопкой при загрузке страницы
 		setActiveContent(getActiveTabName())
 
+		// при клике на .tabs__head
 		head.addEventListener('click', e => {
+			// узнаем, был ли клик на кнопке
 			const caption = e.target.closest('.tabs__caption')
+			// если клик был не на кнопке, то прерываем выполнение функции
 			if (!caption) return
+			// если клик был на активной кнопке, то тоже прерываем выполнение функции и ничего не делаем
 			if (caption.classList.contains('tabs__caption_active')) return;
 
+			// если уже есть активная кнопка
 			if (head.querySelector('.tabs__caption_active')) {
+				// то удаляем ей активный класс
 				head.querySelector('.tabs__caption_active').classList.remove('tabs__caption_active')
 			}
 
+			// затем добавляем активный класс кнопке, на которой был клик
 			caption.classList.add('tabs__caption_active')
 
+			// устанавливаем активный элемент контента в соответствии с активной кнопкой
 			setActiveContent(getActiveTabName())
 		})
 	}
 
+	// вызываем основную функцию
 	tabs();
 
 });
