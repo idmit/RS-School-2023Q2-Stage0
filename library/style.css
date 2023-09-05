@@ -304,14 +304,30 @@ html {
 	padding: 0 20px;
 }
 
-.hidden {
-	display: none;
+.slider {
+	overflow: hidden;
+}
+
+.carousel {
+	display: flex;
+	justify-content: space-between;
+	gap: 25px;
+	width: 100%;
+	object-fit: cover;
+	white-space: nowrap;
+	transition: all ease 0.7s;
 }
 
 .image-item {
 	max-width: 100%;
 	height: auto;
 	object-fit: cover;
+}
+
+.slider-image {
+	width: 32.15%;
+	max-width: 450px;
+	aspect-ratio: 450/560;
 }
 
 .button-arrow {
@@ -345,6 +361,23 @@ html {
 	height: 16px;
 	border-radius: 50%;
 	background-color: #0c0c0e;
+	cursor: pointer;
+	border: none;
+	transition: all 0.3s;
+}
+
+.circle:disabled {
+	cursor: auto;
+}
+
+.disabled-button {
+	pointer-events: none;
+	opacity: 1;
+}
+
+.button-arrow:disabled {
+	opacity: 0.3;
+	pointer-events: none;
 }
 
 .active-circle {
