@@ -31,6 +31,7 @@
 
 // slider start
 
+// находим блок с фото и кнопки пагинации
 const carousel = document.querySelector('.carousel');
 const dots = document.querySelectorAll('.circle');
 
@@ -72,16 +73,19 @@ function nextSlide() {
 	thisSlide(currentIndex);
 };
 
+// функция перелистывания слайда
 function rollSlider() {
 	const firstImgWidth = firstImg.clientWidth + 25;
 	carousel.style.transform = `translateX(${-currentIndex * firstImgWidth}px)`;
 };
 
+// добавить стиль на активную кнопку
 function thisSlide(index) {
 	dots.forEach(item => item.classList.remove('active-circle'));
 	dots[index].classList.add('active-circle');
 };
 
+// убрать/добавить возможность нажатия на кнопку пагинации
 function fillPagination(index) {
 	dots.forEach(item => item.removeAttribute('disabled'));
 	dots[index].setAttribute('disabled', 'disabled');
@@ -89,6 +93,7 @@ function fillPagination(index) {
 	paginationBtns[index].classList.add('disabled-button');
 }
 
+// функция перелистывания при нажатии на кнопки пагинации
 dots.forEach((circle, i) => {
 	circle.setAttribute('data-num', i);
 	circle.addEventListener('click', changeClientWidth);
@@ -109,5 +114,5 @@ dots.forEach((circle, i) => {
 	}
 });
 
-
+// slider end
 

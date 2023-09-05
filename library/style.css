@@ -1049,31 +1049,23 @@ html {
 	color: #ffffff;
 }
 
-@media (max-width: 1390px) {
-	.section-photo {
-		justify-content: center;
-		margin-bottom: 20px;
+@media (max-width: 1024px) {
+	.carousel {
+		gap: 25px;
+		padding: 0 10px;
 	}
 
-	.hidden-circle {
+	.slider {
+		width: 96%;
+		margin: 0 auto;
+	}
+
+	.slider-image {
+		width: 50%;
+	}
+
+	.control:nth-of-type(4) {
 		display: flex;
-	}
-
-	.image-item-2, .image-item-3 {
-		display: none;
-	}
-
-	.image-item-1 {
-		margin: 0 58px 0 58px;
-	}
-
-	.button-arrow {
-		display: flex;
-		align-items: center;
-	}
-
-	.arrow {
-		margin-top: 43px;
 	}
 }
 
@@ -1097,6 +1089,7 @@ html {
 
 	.nav-list {
 		position: absolute;
+		display: none;
 		right: 0;
 		top: 90px;
 		margin: 0;
@@ -1107,14 +1100,41 @@ html {
 		align-items: center;
 		width: 332px;
 		height: 480px;
-		transform: translateX(100%);
-		transition: 0.2s all linear;
-		background-color: #0C0C0E;;
+		background-color: #0C0C0E;
 		z-index: 150;
 	}
 
+	.nav_start {
+		animation: burger-close 0.4s ease-in-out;
+		transition: 0.4s ease-in-out;
+	}
+
 	.nav-list_active {
-		transform: translateX(0);
+		display: flex;
+		transition: 0.4s ease-in-out;
+		animation: burger-open 0.4s ease-in-out;
+	}
+
+	@keyframes burger-open {
+		0% {
+			transform: translateX(100%);
+		}
+
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes burger-close {
+		0% {
+			display: flex;
+			transform: translateX(0);
+		}
+
+		100% {
+			display: none;
+			transform: translateX(100%);
+		}
 	}
 
 	.header__burger {
@@ -1143,6 +1163,10 @@ html {
 	.nav-link:hover::before {
 		transform: scaleX(0);
 	}
+
+	.buttons-get-card {
+		justify-content: center;
+	}
 }
 
 @media (max-width: 959.5px) {
@@ -1157,7 +1181,56 @@ html {
 		background: url(assets/img/bg-2.jpg);
 	}
 
+	.section-photo {
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+
+	.slider {
+		width: 67.3%;
+		margin: 0;
+	}
+
+	.carousel {
+		width: 100%;
+		padding: 0 20px;
+		gap: 25px;
+	}
+
+	.slider-image {
+		width: 100%;
+	}
+
 	.favorites-choice {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background-color: rgba(225, 209, 186, 0.6);
+		border-radius: 10px;
+		width: 100%;
 		justify-content: flex-start;
+		padding-top: 0;
+		height: 44px;
+	}
+
+	.control:nth-of-type(5) {
+		display: flex;
+	}
+
+	.prev {
+		margin-right: 38px;
+	}
+
+	.next {
+		margin-left: 38px;
+	}
+
+	.button-arrow {
+		display: flex;
+		align-items: center;
+	}
+
+	.arrow {
+		margin-top: 22px;
 	}
 }
