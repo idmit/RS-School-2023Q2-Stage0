@@ -5,6 +5,7 @@
 	const menu = document.querySelector('.nav-list');
 	const menuLinks = document.querySelectorAll('.nav-link');
 	burger.addEventListener('click', () => {
+		profileMenu.classList.remove('profile__menu--active');
 		burger.classList.toggle('burger_active');
 		menu.classList.toggle('nav-list_active');
 	});
@@ -184,3 +185,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // tabs end
+
+// modal start 
+
+// получить все кнопки меню пользователя
+const profileBtn = document.querySelector('.profile-button');
+const profileMenu = document.querySelector('.profile__menu');
+const profileLinks = document.querySelectorAll('.profile__menu_link');
+const modalMenu = document.querySelector('.header__auth');
+
+// навешиваем событие по клику на иконку пользователя (открывается окно с выбором логина или регистрации)
+profileBtn.addEventListener('click', () => {
+	menu.classList.remove('nav-list_active');
+	burger.classList.remove('burger_active');
+	profileMenu.classList.toggle('profile__menu--active');
+});
+
+// при клике на любую ссылку в меню, скрываем это меню
+for (let i = 0; i < profileLinks.length; i++) {
+	profileLinks[i].addEventListener('click', () => {
+		profileMenu.classList.remove('profile__menu--active');
+	})
+};
+
+// клик по области в меню
+modalMenu.addEventListener('click', event => {
+	event._isClickWithInMenu = true;
+});
+
+// клик по области вне меню пользователя закрывает меню
+document.body.addEventListener('click', event => {
+	if (event._isClickWithInMenu) return;
+	profileMenu.classList.remove('profile__menu--active');
+});
