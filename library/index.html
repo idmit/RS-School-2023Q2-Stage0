@@ -17,11 +17,11 @@
 <body>
 	<div class="container">
 		<header class="header">
-			<div class="wrapper">
+			<div class="wrapper header__wrapper">
 				<h1 class="logo-box">Brooklyn Public Library</h1>
 				<div class="nav-box">
 					<nav class="nav" id="nav">
-						<ul class="nav-list" id="menu">
+						<ul class="nav-list nav_start" id="menu">
 							<li class="nav-item"><a href="#about" class="nav-link">About</a></li>
 							<li class="nav-item"><a href="#favorites" class="nav-link">Favorites</a></li>
 							<li class="nav-item"><a href="#coffeeShop" class="nav-link">Coffee shop</a></li>
@@ -29,6 +29,13 @@
 							<li class="nav-item"><a href="#libraryCard" class="nav-link">Library Сard</a></li>
 						</ul>
 					</nav>
+					<div class="header__auth">
+						<button class="profile-button"><img src="assets/svg/icon_profile.svg" alt="profile icon" class="profile-icon"></button>
+						<div class="profile__menu" id="profile_menu">
+							<h5 class="profile__menu_title">Profile</h5>
+							<a href="#" class="profile__menu_link profile__menu_link_login open-login">Log In</a>
+							<a href="#" class="profile__menu_link profile__menu_link_register open-registry">Register</a>
+					</div>
 					<button class="profile-button"><img src="assets/svg/icon_profile.svg" alt="profile icon" class="profile-icon"></button>
 					<button class="header__burger burger" id="burger">
 						<span class="burger__line burger__line_first"></span>
