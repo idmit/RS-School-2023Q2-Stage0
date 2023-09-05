@@ -802,17 +802,18 @@ html {
 .contacts-tel {
 	text-decoration: none;
 	color: #000000;
+	transition: 0.2s ease;
 }
 
 .contacts-tel:hover, .contacts-email:hover, .footer-link:hover {
 	color: #BB945F;
-	transition: 0.2s ease;
 }
 
 .contacts-email {
 	text-decoration: none;
 	color: #000000;
 	font-weight: bold;
+	transition: 0.2s ease;
 }
 
 .library-card {
@@ -841,7 +842,7 @@ html {
 
 .gold-bg {
 	width: 100%;
-	padding: 20px 20px 0px 20px; 
+	padding: 20px 20px 0px 20px;
 	background-color: #BB945F;
 }
 
@@ -923,11 +924,18 @@ html {
 	letter-spacing: 0.4px;
 }
 
+.buttons-get-card {
+	display: flex;
+	gap: 20px;
+	justify-content: right;
+}
+
 .button-get-card {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 75px;
 	height: 30px;
-	padding: 4px 0;
-	margin-right: 16px;
 	text-align: center;
 	border: 1px solid #000000;
 	border-radius: 2px;
@@ -982,6 +990,7 @@ html {
 	line-height: 20px; /* 133.333% */
 	text-decoration: none;
 	color: #ffffff;
+	transition: 0.2s ease;
 }
 
 .footer-text-right {
@@ -996,8 +1005,12 @@ html {
 	list-style-type: none;
 }
 
+.social-link svg {
+	transition: all 0.1s;
+}
+
 .social-link:hover svg {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .center-frame {
@@ -1035,6 +1048,7 @@ html {
 	letter-spacing: 2px;
 	text-decoration: none;
 	color: #ffffff;
+	transition: 0.3s ease;
 }
 
 .footer-username {
