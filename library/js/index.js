@@ -1,17 +1,3 @@
-console.log(`
-		Итоговая оценка : 100/100 \n
-		1) Вёрстка валидная +10 \n
-		2) Вёрстка семантическая +16 \n
-		3) Вёрстка соответствует макету +54 \n
-		4) Общие требования к верстке +20 \n
-`)
-
-console.log(`
-		1.Task: (https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part2.md) \n
-		2. Deploy: (https://rolling-scopes-school.github.io/idmit-JSFEPRESCHOOL2023Q2/library/) \n
-		3. Done 08.08.2023 / deadline 14.08.2023 \n
-		4. Score: 50 / 50 \n
-`)
 
 // start burger menu
 (function () {
@@ -55,6 +41,73 @@ const sliderImage = document.querySelectorAll('.slider-image');
 const firstImg = carousel.querySelectorAll('.image-item')[0];
 const arrows = document.querySelectorAll('.arrow');
 const buttonArrow = document.querySelectorAll('.button');
+
+let currentIndex = 0;
+
+prevButton.addEventListener('click', prevSlide);
+nextButton.addEventListener('click', nextSlide);
+
+function prevSlide() {
+	currentIndex--;
+	if (currentIndex === 0) {
+		prevButton.setAttribute('disabled', 'disabled');
+	}
+	if (currentIndex > 0 && currentIndex < 4) {
+		prevButton.removeAttribute('disabled');
+		nextButton.removeAttribute('disabled');
+	}
+
+	if (currentIndex === 4) {
+		nextButton.setAttribute('disabled', 'disabled');
+	}
+	if (currentIndex < 0) currentIndex = sliderImage.length - 1;
+	rollSlider();
+	thisSlide(currentIndex);
+};
+
+function nextSlide() {
+	currentIndex++;
+	if (currentIndex >= sliderImage.length) currentIndex = 0;
+	rollSlider();
+	thisSlide(currentIndex);
+};
+
+function rollSlider() {
+	const firstImgWidth = firstImg.clientWidth + 25;
+	carousel.style.transform = `translateX(${-currentIndex * firstImgWidth}px)`;
+};
+
+function thisSlide(index) {
+	dots.forEach(item => item.classList.remove('active-circle'));
+	dots[index].classList.add('active-circle');
+};
+
+function fillPagination(index) {
+	dots.forEach(item => item.removeAttribute('disabled'));
+	dots[index].setAttribute('disabled', 'disabled');
+	paginationBtns.forEach(item => item.classList.remove('disabled-button'));
+	paginationBtns[index].classList.add('disabled-button');
+}
+
+dots.forEach((circle, i) => {
+	circle.setAttribute('data-num', i);
+	circle.addEventListener('click', changeClientWidth);
+
+	function changeClientWidth(e) {
+		let clickedDotNum = e.target.dataset.num;
+		if (clickedDotNum == currentIndex) {
+			return;
+		} else {
+			let imageWidth = carousel.firstElementChild.clientWidth;
+			let pixels = (-imageWidth * clickedDotNum) - (clickedDotNum * 25);
+			carousel.style.transform = 'translateX(' + pixels + 'px)';
+			dots[currentIndex].classList.remove('active-circle');
+			dots[clickedDotNum].classList.add('active-circle');
+			currentIndex = clickedDotNum;
+			fillPagination(currentIndex);
+		}
+	}
+});
 
 
 
