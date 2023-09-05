@@ -487,6 +487,40 @@ html {
 	box-sizing: border-box;
 }
 
+.tabs__caption {
+	transition: 0.2s all;
+}
+
+.tabs__caption:hover {
+	transform: scale(1.1);
+}
+
+.tabs__caption_active {
+	opacity: 1;
+}
+
+.tabs__content {
+	display: none;
+	opacity: 0;
+	animation: showContent 1.5s forwards;
+}
+
+.tabs__content_active {
+	display: flex;
+}
+
+@keyframes showContent {
+	0% {
+		transform: scaleY(0.98);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+}
+
 .first-book {
 	position: relative;
 	display: flex;
@@ -612,7 +646,7 @@ html {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	padding: 15px 0px 0px 20px;
+	padding: 15px 0px 15px 20px;
 	border: 1px solid black;
 	margin-right: 40px;
 	max-width: 550px;
@@ -622,7 +656,6 @@ html {
 .button-own {
 	width: 75px;
 	height: 30px;
-	margin-bottom: 15px;
 	margin-top: auto;
 	border: 1px solid #BB945F;
 	border-radius: 2px;
@@ -637,12 +670,6 @@ html {
 	line-height: normal;
 	letter-spacing: 1px;
 	color: #BB945F;
-}
-
-.spring-container,
-.summer-container,
-.autumn-container {
-	display: none;
 }
 
 .coffee-text {
