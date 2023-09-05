@@ -13,6 +13,7 @@ console.log(`
 		4. Score: 50 / 50 \n
 `)
 
+// start burger menu
 (function () {
 	const burger = document.querySelector('.burger');
 	const menu = document.querySelector('.nav-list');
@@ -40,7 +41,20 @@ console.log(`
 	});
 }());
 
+// burder menu end
 
+// slider start
+
+const carousel = document.querySelector('.carousel');
+const dots = document.querySelectorAll('.circle');
+
+const paginationBtns = document.querySelectorAll('.control')
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+const sliderImage = document.querySelectorAll('.slider-image');
+const firstImg = carousel.querySelectorAll('.image-item')[0];
+const arrows = document.querySelectorAll('.arrow');
+const buttonArrow = document.querySelectorAll('.button');
 
 
 
