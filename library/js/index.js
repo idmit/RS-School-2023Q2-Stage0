@@ -310,4 +310,43 @@ registryFormBtn.addEventListener('click', () => {
 	// при получении email убираем все пробелы и переводим в нижний регистр
 	let registryEmailValue = registryEmailInp.value.toLowerCase().replace(/\s/g, '');
 	let registryPassValue = registryPassInp.value.replace(/\s/g, '');
+
+	// форматируем полученное значение имени пользователя и записываем в localStorage
+	registryNameValue = `${registryNameValue[0].toUpperCase()}${registryNameValue.slice(1).toLowerCase()}` // первый символ в верхнем регистре, остальные в нижнем регистре
+	localStorage.setItem('userName', registryNameValue);
+
+	// форматируем полученное значение фамилии пользователя и записываем в localStorage
+	registrySurNameValue = `${registrySurNameValue[0].toUpperCase()}${registrySurNameValue.slice(1).toLowerCase()}` // первый символ в верхнем регистре, остальные в нижнем регистре
+	localStorage.setItem('surName', registrySurNameValue);
+
+	// записываем email пользователя 
+	localStorage.setItem('userEmail', registryEmailValue);
+
+	// записываем пароль пользователя 
+	localStorage.setItem('userPassword', registryPassValue);
+
+	localStorage.removeItem('userVisits');
+
+	//создать счетчик визитов юзера и присвоить в него значение из БД
+	let userVisits = Number(localStorage.getItem('userVisits'));
+
+	//увеличить кол-во визитов юзера на 1
+	userVisitsNum(userVisits);
+
+	// записываем в localStorage подписан ли пользователь и количество купленных книг
+	localStorage.setItem('userSubscription', false);
+	localStorage.setItem('userOwnBooks', 0);
+
+	let generateNum = Math.floor(Math.random() * 9e8) + 1e8;
+	let convertedNum = generateNum.toString(16).toUpperCase();
+	
+	while (convertedNum.length < 9) {
+		convertedNum = "0" + convertedNum;
+	};
+
+	localStorage.setItem('cardNumber', convertedNum);
+
+	localStorage.setItem('userReg', true);
+	localStorage.setItem('userAuth', true);
+
 })
