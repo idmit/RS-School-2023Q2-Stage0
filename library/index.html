@@ -504,6 +504,31 @@
 			</form>
 		</div>
 	</div>
+	<div class="modal modal__login">
+		<div class="auth login__auth">
+			<button class="modal__btn modal__close_btn">
+				<img src="assets/svg/cross.svg" alt="close-btn" class="close_btn">
+			</button>
+			<h3 class="modal__title">Login</h3>
+			<form class="login__form auth__login_form">
+				<ul class="modal__list">
+					<li class="modal__item">
+						<label class="modal__label" for="login">E-mail or readers card</label>
+						<input type="text" class="modal__input" id="login" name="login-email" required>
+					</li>
+					<li class="modal__item">
+						<label class="modal__label" for="login_password">Password</label>
+						<input type="password" class="modal__input" id="login-password" name="login-password" required minlength="8">
+					</li>
+				</ul>
+				<button class="modal__button login-form-btn" type="submit">Log In</button>
+				<span class="auth__modal_text">
+					Don’t have an account?
+					<a class="modal__link" href="#" id="register__link">Register</a>
+				</span>
+			</form>
+		</div>
+	</div>
 	<script src="js/index.js"></script>
 </body>
 </html>
