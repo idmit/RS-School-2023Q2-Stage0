@@ -1386,6 +1386,80 @@ html {
 	right: 25px
 }
 
+.buy-card_content {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	max-width: 640px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.buy-card_main-content {
+	display: flex;
+	gap: 40px;
+	padding: 30px 40px 40px;
+	background-color: #ffffff;
+}
+
+.buy-card_header {
+	padding: 20px 0;
+	background-color: #0C0C0E;
+}
+
+.buy-card-title {
+	margin: 0;
+	color: #FFF;
+	text-align: center;
+	font-family: Forum;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 50% */
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+}
+
+.buy-card-text {
+	color: #8E8E8E;
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 133.333% */
+	letter-spacing: 2px;
+}
+
+.expiration-code {
+	display: flex;
+	gap: 10px;
+}
+
+.size-crop {
+	max-width: 45px;
+}
+
+.button-buy-modal {
+	margin-bottom: 0;
+}
+
+.buy-card-price {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+}
+
+.price-card {
+	color: #0C0C0E;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 20px; /* 100% */
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
 @media (max-width: 1024px) {
 	.carousel {
 		gap: 25px;
