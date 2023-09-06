@@ -1208,6 +1208,184 @@ html {
 	height: 15px;
 }
 
+.profile {
+	position: relative;
+	max-width: 600px;
+	width: 100%;
+	display: flex;
+	margin: 0 auto;
+}
+
+.profile__modal_left {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 170px;
+	width: 100%;
+	background-color:#0C0C0E;;
+}
+
+.profile__modal_init {
+	padding: 30px 27px;
+	margin-bottom: 15px;
+	background-color: #ffffff;
+	color: #BB945F;
+	text-align: center;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	text-transform: capitalize;
+}
+
+.profile__modal_name {
+	padding: 5px 15px;
+	background-color: #ffffff;
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	text-transform: capitalize;
+}
+
+.profile__modal_right {
+	display: flex;
+	flex-direction: column;
+	padding: 40px 20px;
+	width: 100%;
+	background-color: #ffffff;
+}
+
+.profile__modal_title {
+	margin: 0 0 40px;
+	color: #000;
+	font-family: Forum;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 50% */
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+}
+
+.profile__modal_list {
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	gap: 20px;
+}
+
+.profile__modal_item {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.profile__modal_list-name {
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	letter-spacing: 0.4px;
+	text-transform: capitalize;
+}
+
+.profile__modal_svg {
+	width: 20px;
+	height: 21px;
+}
+
+.profile__modal_list-number {
+	font-family: Inter;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 200% */
+	letter-spacing: 0.2px;
+	text-transform: capitalize;
+}
+
+.strong__title {
+	color: #0C0C0E;
+	font-family: Inter;
+	font-size: 25px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 80% */
+}
+
+.item__list_book {
+	color: #000;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+.item__list_book:first-of-type {
+	margin-bottom: 10px;
+}
+
+.item__list_book:last-of-type {
+	margin-bottom: 40px;
+}
+
+.profile__modal_card-number {
+	display: flex;
+	align-items: center;
+	color: #0C0C0E;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.profile__modal_card-numb {
+	display: flex;
+	max-width: 140px;
+	padding: 0 0 0 15px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	color: #BB945F;
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 100% */
+	cursor: pointer;
+}
+
+.profile__modal_card-number label {
+	display: flex;
+	align-items: center;
+}
+
+.profile__modal_card-number label img {
+	width: 13px;
+	height: 12px;
+}
+
+.profile__close_btn {
+	top: 25px;
+	right: 25px
+}
+
 @media (max-width: 1024px) {
 	.carousel {
 		gap: 25px;
