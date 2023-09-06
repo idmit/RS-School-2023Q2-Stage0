@@ -54,17 +54,6 @@ nextButton.addEventListener('click', nextSlide);
 // действие при нажатии на кнопку предыдущего слайда
 function prevSlide() {
 	currentIndex--;
-	if (currentIndex === 0) {
-		prevButton.setAttribute('disabled', 'disabled');
-	}
-	if (currentIndex > 0 && currentIndex < 4) {
-		prevButton.removeAttribute('disabled');
-		nextButton.removeAttribute('disabled');
-	}
-
-	if (currentIndex === 4) {
-		nextButton.setAttribute('disabled', 'disabled');
-	}
 	if (currentIndex < 0) currentIndex = sliderImage.length - 1;
 	rollSlider();
 	thisSlide(currentIndex);
@@ -242,6 +231,7 @@ openLogin.forEach(btn => {
 	})
 });
 
+
 // Альтернатива
 // for (let i = 0; i < openLogin.length; i++) {
 // 	openLogin[i].addEventListener('click', () => {
@@ -290,3 +280,34 @@ const closeModal = event => {
 // ловим события клика и применяем функцию закрытия модалки
 login.addEventListener('click', closeModal);
 registry.addEventListener('click', closeModal);
+
+// форма регистрации 
+
+// получаем форму регистрации 
+const registryForm = document.querySelector('.registry__form');
+
+//получить все инпуты в форме регистрации 
+const registryNameInp = document.getElementById('registry__first-name');
+const registrySurNameInp = document.getElementById('registry__last-name');
+const registryEmailInp = document.getElementById('registry__email');
+const registryPassInp = document.getElementById('registry__pass');
+
+// получаем кнопку сабмита для формы регистрации 
+const registryFormBtn = document.querySelector('.registry__button-submit');
+
+// Добавляем счетчик количества посещений пользователя в localStorage
+const userVisitsNum = (userVisits) => {
+	userVisits++;
+	localStorage.setItem('Visits', userVisits);
+};
+
+// обрабатываем клик на кнопку сабмита в форме регистрации
+registryFormBtn.addEventListener('click', () => {
+
+	//Получаем все значения в инпутах и убираем все пробелы в строке
+	let registryNameValue = registryNameInp.value.replace(/\s/g, '');
+	let registrySurNameValue = registrySurNameInp.value.replace(/\s/g, '');
+	// при получении email убираем все пробелы и переводим в нижний регистр
+	let registryEmailValue = registryEmailInp.value.toLowerCase().replace(/\s/g, '');
+	let registryPassValue = registryPassInp.value.replace(/\s/g, '');
+})

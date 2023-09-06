@@ -1483,6 +1483,10 @@ html {
 	transform: none;
 }
 
+.scroll-off {
+	overflow: hidden;
+}
+
 @media (max-width: 1024px) {
 	.carousel {
 		gap: 25px;
