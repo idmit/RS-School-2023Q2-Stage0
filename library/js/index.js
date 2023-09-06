@@ -248,3 +248,17 @@ openLogin.forEach(btn => {
 // 		login.classList.add('modal--active');
 // 	})
 // };
+
+// перебрать все кнопки для открытия модального окна регистрации и добавить к каждой класс
+openRegistry.forEach(btn => {
+	btn.addEventListener('click', () => {
+		registry.classList.add('modal--active');
+	})
+})
+
+// Альтернатива
+// for (let i = 0; i <hr openRegistry.length; i++) {
+// 	openRegistry[i].addEventListener('click', () => {
+// 		registry.classList.add('modal--active');
+// 	})
+// };
