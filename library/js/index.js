@@ -222,5 +222,29 @@ document.body.addEventListener('click', event => {
 
 // profile menu end
 
-// tabs start 
+// modal start 
 
+// получить все кнопки для открытия модального окна логина или регистрации
+const openLogin = document.querySelectorAll('.open-login');
+const openRegistry = document.querySelectorAll('.open-registry');
+// получить модальные окна логина, регистрации и все модалки.
+const login = document.querySelector('.modal__login');
+const registry = document.querySelector('.modal__registry');
+const modals = document.querySelectorAll('.modal');
+// получить ссылки в модалках на логин/регистрацию
+const linkLogin = document.getElementById('login__link');
+const linkRegistry = document.getElementById('register__link');
+
+// перебрать все кнопки для открытия модального окна логина и добавить к каждой класс
+openLogin.forEach(btn => {
+	btn.addEventListener('click', () => {
+		login.classList.add('modal--active');
+	})
+});
+
+// Альтернатива
+// for (let i = 0; i < openLogin.length; i++) {
+// 	openLogin[i].addEventListener('click', () => {
+// 		login.classList.add('modal--active');
+// 	})
+// };
