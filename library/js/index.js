@@ -262,3 +262,31 @@ openRegistry.forEach(btn => {
 // 		registry.classList.add('modal--active');
 // 	})
 // };
+
+// обрабатываем клик на кнопку login в модальном окне
+linkLogin.addEventListener('click', () => {
+	registry.classList.remove('modal--active');
+	login.classList.add('modal--active');
+})
+
+// обрабатываем клик на кнопку Register в модальном окне
+linkRegistry.addEventListener('click', () => {
+	login.classList.remove('modal--active');
+	registry.classList.add('modal--active');
+})
+
+// обрабатываем клик вне формы или на кнопку закрытия формы
+const closeModal = event => {
+	// ловим куда точно был клик мышкой
+	const target = event.target;
+	
+	// если клик по окну модалки или на кнопку закрытия, а не по самой форме, закрываем 
+	if (target === login || target === registry || target.closest('.modal__btn')) {
+		login.classList.remove('modal--active');
+		registry.classList.remove('modal--active');
+	}
+};
+
+// ловим события клика и применяем функцию закрытия модалки
+login.addEventListener('click', closeModal);
+registry.addEventListener('click', closeModal);
