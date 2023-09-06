@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // modal start 
 
+// profile menu start
 // получить все кнопки меню пользователя
 const profileBtn = document.querySelector('.profile-button');
 const profileMenu = document.querySelector('.profile__menu');
@@ -218,3 +219,8 @@ document.body.addEventListener('click', event => {
 	if (event._isClickWithInMenu) return;
 	profileMenu.classList.remove('profile__menu--active');
 });
+
+// profile menu end
+
+// tabs start 
+

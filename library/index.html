@@ -35,14 +35,15 @@
 							<h5 class="profile__menu_title">Profile</h5>
 							<a href="#" class="profile__menu_link profile__menu_link_login open-login">Log In</a>
 							<a href="#" class="profile__menu_link profile__menu_link_register open-registry">Register</a>
+						</div>
 					</div>
+					<button class="header__burger burger" id="burger">
+						<span class="burger__line burger__line_first"></span>
+						<span class="burger__line burger__line_second"></span>
+						<span class="burger__line burger__line_third"></span>
+						<span class="burger__line burger__line_fourth"></span>
+					</button>
 				</div>
-				<button class="header__burger burger" id="burger">
-					<span class="burger__line burger__line_first"></span>
-					<span class="burger__line burger__line_second"></span>
-					<span class="burger__line burger__line_third"></span>
-					<span class="burger__line burger__line_fourth"></span>
-				</button>
 			</div>
 		</header>
 		<main class="main">
@@ -59,7 +60,9 @@
 				<p class="section-text">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</p>
 				<div class="section-photo">
 					<div class="button-arrow prev arrow">
-						<button id="prev-button" class="button-arrow button"><img src="assets/svg/left-arrow.svg" alt="arrow" class="arrow"></button>
+						<button id="prev-button" class="button-arrow button">
+							<img src="assets/svg/left-arrow.svg" alt="arrow" class="arrow">
+						</button>
 					</div>
 					<div class="slider">
 						<div class="carousel">
@@ -467,6 +470,39 @@
 				<div><a href="https://github.com/idmit" class="footer-username footer-link">Dzmitry</a></div>
 			</div>
 		</footer>
+	</div>
+	<div class="modal modal__registry">
+		<div class="auth registry__auth">
+			<button class="modal__btn modal__close_btn">
+				<img src="assets/svg/cross.svg" alt="close-btn" class="close_btn">
+			</button>
+			<h3 class="modal__title">Register</h3>
+			<form class="registry__form auth__registry_form" action>
+				<ul class="modal__list">
+					<li class="modal__item">
+						<label class="modal__label" for="registry__first-name">First name</label>
+						<input type="text" class="modal__input" id="registry__first-name" name="first-name" required minlength="3">
+					</li>
+					<li class="modal__item">
+						<label class="modal__label" for="registry__last-name">Last name</label>
+						<input type="text" class="modal__input" id="registry__last-name" name="last-name" required minlength="3">
+					</li>
+					<li class="modal__item">
+						<label class="modal__label" for="registry__email">E-mail</label>
+						<input type="email" class="modal__input" id="registry__email" name="email" required pattern="/^[^ ]+@[^ ]+\.[a-z]{2,3}$/">
+					</li>
+					<li class="modal__item">
+						<label class="modal__label" for="registry__pass">Password</label>
+						<input type="password" class="modal__input" id="registry__pass" name="password" required minlength="8">
+					</li>
+				</ul>
+				<button class="modal__button registry__button-submit" type="submit">Sing Up</button>
+				<span class="auth__modal_text">
+					Already have an account?
+					<a class="modal__link" href="#" id="login__link">Login</a>
+				</span>
+			</form>
+		</div>
 	</div>
 	<script src="js/index.js"></script>
 </body>
