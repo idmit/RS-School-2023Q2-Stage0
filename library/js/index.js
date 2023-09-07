@@ -349,7 +349,7 @@ registryForm.addEventListener('submit', () => {
 	localStorage.setItem('cardNumber', convertedNum);
 	// пользователь зарегистрировался 
 	localStorage.setItem('userReg', true);
-	localStorage.setItem('userAuth', true);
+	// localStorage.setItem('userAuth', true);
 });
 
 //
@@ -378,25 +378,25 @@ loginForm.addEventListener('submit', (e) => {
 	// датчик валидации 
 	let loginErrorResult = 0;
 
-autLoginError.textContent = '';
-if (loginNameValue !== localStorage.getItem('userEmail') && loginNameValue !== localStorage.getItem('cardNumber')) {
+	autLoginError.textContent = '';
+	if (loginNameValue !== localStorage.getItem('userEmail') && loginNameValue !== localStorage.getItem('cardNumber')) {
 	autLoginError.textContent = 'This email or card number is not registered';
 	loginNameInp.classList.add('error_value');
 	loginErrorResult++
-} else {
+	} else {
 	loginNameInp.classList.remove('error_value');
 	loginNameInp.classList.add('verify');
-}
+	}
 
-autPassError.textContent = '';
-if (loginPassValue !== localStorage.getItem('userPassword')) {
+	autPassError.textContent = '';
+	if (loginPassValue !== localStorage.getItem('userPassword')) {
 	autPassError.textContent = 'incorrect password';
 	loginPassInp.classList.add('error_value');
 	loginErrorResult++
-} else {
+	} else {
 	loginPassInp.classList.remove('error_value');
 	loginPassInp.classList.add('verify')
-}
+	}
 
 	if (loginErrorResult > 0) {
 		return;
@@ -412,4 +412,152 @@ if (loginPassValue !== localStorage.getItem('userPassword')) {
 
 })
 
+
+// если юзер зарегистрирован
+	if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth') !== 'true') {
+	
+	
+	// получаем форму проверки карты
+	const cardFindForm = document.querySelector('.find-card');
+	
+	// получаем все инпуты 
+	const cardNameInp = document.querySelector('.reader-name-input');
+	const cardNumberInp = document.getElementById('reader-card');
+
+	// получаем поля для вывода ошибок в инпутах
+
+	const textNameError = document.querySelector('.error-text-card-name');
+	const textNumberError = document.querySelector('.error-text-card-number');
+
+	// получаем кнопку сабмита
+	const cardBtn = document.querySelector('.button-check');
+
+
+	console.log(localStorage.getItem('cardNumber'));
+
+	cardBtn.addEventListener('click', () => {
+
+		let cardNameValue = cardNameInp.value.replace(/(^|\s)\S/g, function (a) { return a.toUpperCase() });
+		let cardNumberValue = cardNumberInp.value.toUpperCase();
+		console.log(cardNumberValue);
+		let cardValidationError = 0;
+
+		textNameError.textContent = '';
+		if (cardNameValue === '') {
+			textNameError.textContent = 'The field is not filled';
+			cardValidationError++
+		} else if (cardNameValue !== `${localStorage.getItem('userName')} ${localStorage.getItem('surName')}` ) {
+			textNameError.textContent = 'User is not found';
+			cardValidationError++
+		} else {
+			cardNameInp.classList.add('verify');
+		}
+
+		textNumberError.textContent = '';
+		if (cardNumberValue === '') {
+			textNumberError.textContent = 'The field is not filled';
+			cardValidationError++
+		} else if (cardNumberValue !== localStorage.getItem('cardNumber')) {
+			textNumberError.textContent = 'Card number is not found';
+			cardValidationError++;
+		} else {
+			cardNumberInp.classList.add('verify');
+		}
+
+		if (cardValidationError > 0) {
+			return;
+		}
+
+		 //сбросить все значения инпутов
+		cardNameInp.value = '';
+		cardNameInp.classList.remove('verify');
+		cardNumberInp.value = '';
+		cardNumberInp.classList.remove('verify');
+
+
+
+		const libraryCardContent = document.querySelector('.library-card');
+
+	libraryCardContent.innerHTML = `
+					<form action="#" method="get" class="find-card">
+						<h3 class="card-title">Find your Library card</h3>
+						<div class="card-body change-card-body">
+							<div class="gold-bg change-bg">
+								<h4 class="title-gold-bg">Brooklyn Public Library</h4>
+								<label for="reader-name">
+									<input type="text" id="reader-name" placeholder="${localStorage.getItem('userName')} ${localStorage.getItem('surName')}" class="reader-name-input reg_placeholder" readonly>
+								</label>
+								<label for="reader-card">
+									<input type="text" id="reader-card" placeholder="${localStorage.getItem('cardNumber')}" class="reader-name-input reg_placeholder" readonly>
+									<span class="error-text-card-number"></span>
+								</label>
+							</div>
+							<ul class="profile__modal_list change_list">
+								<li class="profile__modal_item change-item">
+									<span class="profile__modal_list-name change-list-name">Visits</span>
+									<img src="assets/svg/person.svg" alt="person-svg" class="profile__modal_svg">
+									<span class="profile__modal_list-number">${localStorage.getItem('Visits')}</span>
+								</li>
+								<li class="profile__modal_item change-item">
+									<span class="profile__modal_list-name change-list-name">Bonuses</span>
+									<img src="assets/svg/Star1.svg" alt="person-svg" class="profile__modal_svg"> 
+									<span class="profile__modal_list-number">1240</span>
+								</li>
+								<li class="profile__modal_item change-item">
+									<span class="profile__modal_list-name change-list-name">Books</span>
+									<img src="assets/svg/book.svg" alt="person-svg" class="profile__modal_svg">
+									<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>
+								</li>
+							</ul>
+							</div>
+						</form>
+						<div class="text-right">
+							<h3 class="get-card-title">Visit your profile</h3>
+							<p class="text-card">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
+								<div class="buttons-get-card">
+									<button class="button-get-card open-login"><span class="button-get-text">Profile</span></button>
+								</div>
+						</div>
+	`;
+		setTimeout(() => {
+			libraryCardContent.innerHTML = `
+			<form class="find-card" action>
+						<h3 class="card-title">Find your Library card</h3>
+						<div class="card-body">
+							<div class="gold-bg">
+								<h4 class="title-gold-bg">Brooklyn Public Library</h4>
+								<label for="reader-name">
+									<input type="text" id="reader-name" placeholder="Reader's name" class="reader-name-input">
+									<span class="error-text-card-name"></span>
+								</label>
+								<label for="reader-card">
+									<input type="text" id="reader-card" placeholder="Card number" class="reader-name-input">
+									<span class="error-text-card-number"></span>
+								</label>
+							</div>
+							<button class="button-check" type="submit">Check the card</button>
+							</div>
+						</form>
+						<div class="text-right">
+							<h3 class="get-card-title">Get a reader card</h3>
+							<p class="text-card">You will be able to see a reader card after logging into account or you can register a
+								new account</p>
+								<div class="buttons-get-card">
+									<button class="button-get-card open-registry"><span class="button-get-text">Sign Up</span></button>
+									<button class="button-get-card open-login"><span class="button-get-text">Log in</span></button>
+								</div>
+						</div>
+			`
+			location.reload();
+		}, 10000);
+
+	});
+
+	cardFindForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+	})
+
+};
+
+// этап покупки абонемента
 

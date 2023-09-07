@@ -878,6 +878,16 @@ html {
 	color: #8E8E8E;
 }
 
+.reg_placeholder::placeholder {
+	font-family: "Forum", serif;
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 50px; /* 166.667% */
+	letter-spacing: 0.6px;
+	color: #BB945F;
+}
+
 .button-check {
 	width: 242px;
 	height: 44px;
@@ -889,20 +899,17 @@ html {
 	cursor: pointer;
 	background-color: #ffffff;
 	transition: 0.2s ease-in;
-}
-
-.button-check:hover {
-	background-color: #BB945F;
-	border: 1px solid #BB945F;
-}
-
-.button-check-text {
 	font-family: 'Inter', sans-serif;
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
 	letter-spacing: 1px;
+}
+
+.button-check:hover {
+	background-color: #BB945F;
+	border: 1px solid #BB945F;
 }
 
 .get-card-title {
@@ -1281,6 +1288,11 @@ html {
 	gap: 20px;
 }
 
+.change_list {
+	justify-content: center;
+	align-items: center;
+}
+
 .profile__modal_item {
 	display: flex;
 	flex-direction: column;
@@ -1384,6 +1396,31 @@ html {
 .profile__close_btn {
 	top: 25px;
 	right: 25px
+}
+
+.change-item {
+	margin-bottom: 0;
+	gap: 0;
+}
+
+.change-bg {
+	margin-bottom: 15px;
+}
+
+.change-list-name {
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 200% */
+	letter-spacing: 0.2px;
+	text-transform: capitalize;
+}
+
+.change-card-body {
+	padding: 17.33px 17.33px 16px 17.33px;
 }
 
 .buy-card_content {
