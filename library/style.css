@@ -1487,6 +1487,36 @@ html {
 	overflow: hidden;
 }
 
+.error_value {
+	border: 1px solid red;
+}
+
+.verify {
+	border: 1px solid green;
+}
+
+.error-text-login {
+	margin-top: -5px;
+	font-size: 14px;
+	color: red;
+}
+
+.error-text-pass {
+	margin-top: -5px;
+	font-size: 14px;
+	color: red;
+}
+
+.error-text-card-name {
+	font-size: 14px;
+	color: red;
+}
+
+.error-text-card-number {
+	font-size: 14px;
+	color: red;
+}
+
 @media (max-width: 1024px) {
 	.carousel {
 		gap: 25px;

@@ -302,7 +302,7 @@ const userVisitsNum = (userVisits) => {
 };
 
 // обрабатываем клик на кнопку сабмита в форме регистрации
-registryFormBtn.addEventListener('click', () => {
+registryForm.addEventListener('submit', () => {
 
 	//Получаем все значения в инпутах и убираем все пробелы в строке
 	let registryNameValue = registryNameInp.value.replace(/\s/g, '');
@@ -337,16 +337,79 @@ registryFormBtn.addEventListener('click', () => {
 	localStorage.setItem('userSubscription', false);
 	localStorage.setItem('userOwnBooks', 0);
 
+	// генерируем случайное 9-е число
 	let generateNum = Math.floor(Math.random() * 9e8) + 1e8;
+	// конвертируем в 16-ую систему
 	let convertedNum = generateNum.toString(16).toUpperCase();
-	
+	// если меньше 9 знаков добавляем 0 в начало
 	while (convertedNum.length < 9) {
 		convertedNum = "0" + convertedNum;
 	};
-
+	// записываем сгенерированный номер карты в localStorage
 	localStorage.setItem('cardNumber', convertedNum);
-
+	// пользователь зарегистрировался 
 	localStorage.setItem('userReg', true);
+	localStorage.setItem('userAuth', true);
+});
+
+//
+// получаем форму авторизации
+const loginForm = document.querySelector('.login__form');
+
+//получаем все поля авторизации
+const loginNameInp = document.getElementById('login');
+const loginPassInp = document.getElementById('login-password');
+
+// получаем кнопку отправки формы авторизации
+const loginFormBtn = document.querySelector('.login-form-btn');
+
+// получаем спаны для вывода ошибок
+const autLoginError = document.querySelector('.error-text-login');
+const autPassError = document.querySelector('.error-text-pass');
+
+// обработка клика по кнопке submit формы авторизации 
+loginForm.addEventListener('submit', (e) => {
+	// e.stopPropagation();
+	e.preventDefault();
+	// получаем введенные значения инпут
+	let loginNameValue = loginNameInp.value.replace(/\s/g, '');
+	let loginPassValue = loginPassInp.value.replace(/\s/g, '');
+
+	// датчик валидации 
+	let loginErrorResult = 0;
+
+autLoginError.textContent = '';
+if (loginNameValue !== localStorage.getItem('userEmail') && loginNameValue !== localStorage.getItem('cardNumber')) {
+	autLoginError.textContent = 'This email or card number is not registered';
+	loginNameInp.classList.add('error_value');
+	loginErrorResult++
+} else {
+	loginNameInp.classList.remove('error_value');
+	loginNameInp.classList.add('verify');
+}
+
+autPassError.textContent = '';
+if (loginPassValue !== localStorage.getItem('userPassword')) {
+	autPassError.textContent = 'incorrect password';
+	loginPassInp.classList.add('error_value');
+	loginErrorResult++
+} else {
+	loginPassInp.classList.remove('error_value');
+	loginPassInp.classList.add('verify')
+}
+
+	if (loginErrorResult > 0) {
+		return;
+	}
+
+
+	let userVisits = Number(localStorage.getItem('userVisits'));
+	userVisitsNum(userVisits);
+
+	location.reload();
+
 	localStorage.setItem('userAuth', true);
 
 })
+
+

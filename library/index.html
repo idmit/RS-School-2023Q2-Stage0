@@ -423,8 +423,14 @@
 						<div class="card-body">
 							<div class="gold-bg">
 								<h4 class="title-gold-bg">Brooklyn Public Library</h4>
-								<label for="reader-name"><input type="text" id="reader-name" placeholder="Reader's name" class="reader-name-input"></label>
-								<label for="reader-card"><input type="number" id="reader-card" placeholder="Card number" class="reader-name-input"></label>
+								<label for="reader-name">
+									<input type="text" id="reader-name" placeholder="Reader's name" class="reader-name-input">
+									<span class="error-text-card-name"></span>
+								</label>
+								<label for="reader-card">
+									<input type="number" id="reader-card" placeholder="Card number" class="reader-name-input">
+									<span class="error-text-card-number"></span>
+								</label>
 							</div>
 							<button class="button-check"><span class="button-check-text">Check the card</span></button>
 							</div>
@@ -514,11 +520,13 @@
 				<ul class="modal__list">
 					<li class="modal__item">
 						<label class="modal__label" for="login">E-mail or readers card</label>
-						<input type="text" class="modal__input" id="login" name="login-email" required>
+						<input type="text" class="modal__input" id="login" name="login-email" required minlength="3">
+						<span class="error-text-login"></span>
 					</li>
 					<li class="modal__item">
 						<label class="modal__label" for="login_password">Password</label>
 						<input type="password" class="modal__input" id="login-password" name="login-password" required minlength="8">
+						<span class="error-text-pass"></span>
 					</li>
 				</ul>
 				<button class="modal__button login-form-btn" type="submit">Log In</button>
