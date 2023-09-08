@@ -521,12 +521,12 @@
 					<li class="modal__item">
 						<label class="modal__label" for="login">E-mail or readers card</label>
 						<input type="text" class="modal__input" id="login" name="login-email" required minlength="3">
-						<span class="error-text-login"></span>
+						<span class="error-text error-text-login"></span>
 					</li>
 					<li class="modal__item">
 						<label class="modal__label" for="login_password">Password</label>
 						<input type="password" class="modal__input" id="login-password" name="login-password" required minlength="8">
-						<span class="error-text-pass"></span>
+						<span class="error-text error-text-pass"></span>
 					</li>
 				</ul>
 				<button class="modal__button login-form-btn" type="submit">Log In</button>
@@ -588,34 +588,43 @@
 			<div class="buy-card_main-content">
 				<div class="buy-card-main">
 					<div class="buy-card-form">
-						<form class="buy-card-info">
+						<form class="buy-card-info" action="">
 							<ul class="modal__list">
 								<li class="modal__item">
 									<label for="bank-card-number" class="modal__label">Bank card number</label>
-									<input type="number" id="bank-card-number" name="bank-card-number" class="modal__input" required minlength="16" maxlength="16">
+									<input type="number" id="bank-card-number" name="bank-card-number" class="modal__input" required>
+									<span class="error-text error-bank-card"></span>
 								</li>
 								<li class="modal__item exp-code-item">
 									<label for="expiration-code" class="modal__label">Expiration code</label>
 									<div class="expiration-code">
-										<input type="text" id="expiration-code" name="expiration-code" class="modal__input size-crop" required minlength="2" maxlength="2">
-										<input type="text" id="second_expiration-code" name="expiration-code" class="modal__input size-crop" required minlength="2" maxlength="2">
+										<input type="number" id="expiration-code" name="expiration-code" class="modal__input size-crop" required>
+										
+										<input type="number" id="second_expiration-code" name="expiration-code" class="modal__input size-crop" required>
+										
 									</div>
+									<span class="error-text error-exp-code"></span>
+									<span class="error-text error-exp2-code"></span>
 								</li>
 								<li class="modal__item">
 									<label for="cvc-code" class="modal__label">CVC</label>
-									<input type="text" id="cvc-code" name="cvc-code" class="modal__input size-crop" required minlength="3" maxlength="3">
+									<input type="number" id="cvc-code" name="cvc-code" class="modal__input size-crop" required>
+									<span class="error-text error-cvc-code"></span>
 								</li>
 								<li class="modal__item">
 									<label for="cardholder-name" class="modal__label">Cardholder name</label>
 									<input type="text" id="cardholder-name" name="cardholder-name" class="modal__input" required>
+									<span class="error-text error-user-name"></span>
 								</li>
 								<li class="modal__item">
 									<label for="postal-code" class="modal__label">Postal code</label>
 									<input type="text" id="postal-code" name="postal-code" class="modal__input" required>
+									<span class="error-text error-postal-code"></span>
 								</li>
 								<li class="modal__item">
 									<label for="city-town-name" class="modal__label">City / Town</label>
 									<input type="text" id="city-town-name" name="city-town-name" class="modal__input" required>
+									<span class="error-text error-text-city"></span>
 								</li>
 							</ul>
 							<div class="buy-card-price">

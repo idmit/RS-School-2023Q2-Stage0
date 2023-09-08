@@ -416,6 +416,8 @@ loginForm.addEventListener('submit', (e) => {
 // если юзер зарегистрирован
 	if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth') !== 'true') {
 	
+
+
 	
 	// получаем форму проверки карты
 	const cardFindForm = document.querySelector('.find-card');
@@ -435,9 +437,14 @@ loginForm.addEventListener('submit', (e) => {
 
 	console.log(localStorage.getItem('cardNumber'));
 
+	// отменяем дефолтное поведение кнопки submit
+	cardFindForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+	})
+
 	cardBtn.addEventListener('click', () => {
 
-		let cardNameValue = cardNameInp.value.replace(/(^|\s)\S/g, function (a) { return a.toUpperCase() });
+		let cardNameValue = cardNameInp.value.replace(/(^|\s)\S/g, function (x) { return x.toUpperCase() });
 		let cardNumberValue = cardNumberInp.value.toUpperCase();
 		console.log(cardNumberValue);
 		let cardValidationError = 0;
@@ -553,11 +560,166 @@ loginForm.addEventListener('submit', (e) => {
 
 	});
 
-	cardFindForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-	})
-
 };
 
 // этап покупки абонемента
 
+// получаем форму покупки абонемента 
+
+const buyCardForm = document.querySelector('.buy-card-info');
+
+// получаем все поля в форме 
+
+const bankCardNumber = document.getElementById('bank-card-number');
+const expCodeFirstPart = document.getElementById('expiration-code');
+const expCodeSecondPart = document.getElementById('second_expiration-code');
+const cvcCode = document.getElementById('cvc-code');
+const cardHolderName = document.getElementById('cardholder-name');
+const postalCode = document.getElementById('postal-code');
+const cityName = document.getElementById('city-town-name');
+
+// получаем поля для вывода ошибок
+const bankCardNumberError = document.querySelector('.error-bank-card');
+const expCodeFirstError = document.querySelector('.error-exp-code');
+const expCodeSecondError = document.querySelector('.error-exp2-code');
+const cvcCodeError = document.querySelector('.error-cvc-code');
+const cardHolderError = document.querySelector('.error-user-name');
+const postalCodeError = document.querySelector('.error-postal-code');
+const cityNameError = document.querySelector('.error-text-city');
+
+// получили кнопку сабмита формы
+const buyCardFormBtn = document.querySelector('.button-buy-modal');
+
+buyCardForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+})
+
+buyCardFormBtn.addEventListener('click', () => {
+
+	// получаем значения полей
+	let bankCardNumberValue = bankCardNumber.value.replace(/\s/g, '');
+	let expCodeFirstPartValue = expCodeFirstPart.value.replace(/\s/g, '');
+	let expCodeSecondPartValue = expCodeSecondPart.value.replace(/\s/g, '');
+	let cvcCodeValue = cvcCode.value.replace(/\s/g, '');
+	let cardHolderNameValue = cardHolderName.value.replace(/(^|\s)\S/g, function (x) { return x.toUpperCase() });
+	let postalCodeValue = postalCode.value.replace(/\s/g, '');
+	let cityNameValue = cityName.value.replace(/\s/g, '');
+
+	let buyCardValidationError = 0;
+
+	// валидация поля card number
+	bankCardNumberError.textContent = '';
+	if (bankCardNumberValue === '') {
+		bankCardNumber.classList.add('error_value');
+		bankCardNumberError.textContent = 'The field is not filled';
+		buyCardValidationError++
+		bankCardNumber.classList.remove('verify');
+	} else if (bankCardNumberValue.length !== 16) {
+		bankCardNumber.classList.add('error_value');
+		bankCardNumberError.textContent = 'The field must contain 16 digits';
+		buyCardValidationError++
+		bankCardNumber.classList.remove('verify');
+	} else {
+		bankCardNumber.classList.remove('error_value');
+		bankCardNumber.classList.add('verify');
+	}
+
+	// валидация поля expСode 1
+	expCodeFirstError.textContent = '';
+	if (expCodeFirstPartValue === '') {
+		expCodeFirstPart.classList.add('error_value');
+		expCodeFirstError.textContent = 'The field is not filled';
+		buyCardValidationError++
+		expCodeFirstPart.classList.remove('verify');
+	} else if (expCodeFirstPartValue.length !== 2) {
+		expCodeFirstPart.classList.add('error_value');
+		expCodeFirstError.textContent = 'The field must contain 2 digits';
+		buyCardValidationError++
+		expCodeFirstPart.classList.remove('verify');
+	} else {
+		expCodeFirstPart.classList.remove('error_value');
+		expCodeFirstPart.classList.add('verify');
+	}
+
+	// валидация поля exp code 2
+	expCodeSecondError.textContent = '';
+	if (expCodeSecondPartValue === '') {
+		expCodeSecondPart.classList.add('error_value');
+		expCodeSecondError.textContent = 'The field is not filled';
+		buyCardValidationError++;
+		expCodeSecondPart.classList.remove('verify');
+	} else if (expCodeSecondPartValue.length !== 2) {
+		expCodeSecondPart.classList.add('error_value');
+		expCodeSecondError.textContent = 'The field must contain 2 digits';
+		buyCardValidationError++
+		expCodeFirstPart.classList.remove('verify');
+	} else {
+		expCodeSecondPart.classList.remove('error_value');
+		expCodeFirstPart.classList.add('verify');
+	}
+
+	// валидация поля cvc code  
+	cvcCodeError.textContent = '';
+	if (cvcCodeValue === '') {
+		cvcCode.classList.add('error_value');
+		cvcCodeError.textContent = 'The field is not filled';
+		buyCardValidationError++;
+		cvcCode.classList.remove('verify');
+	} else if (cvcCodeValue.length !== 3) {
+		cvcCode.classList.add('error_value');
+		cvcCodeError.textContent = 'The field must contain 3 digits';
+		buyCardValidationError++;
+		cvcCode.classList.remove('verify');
+	} else {
+		cvcCode.classList.remove('error_value');
+		cvcCode.classList.add('verify');
+	}
+
+	// валидация поля cardholder 
+	cardHolderError.textContent = '';
+	if (cardHolderNameValue === '') {
+		cardHolderName.classList.add('error_value');
+		cardHolderError.textContent = 'The field is not filled';
+		buyCardValidationError++;
+		cardHolderName.classList.remove('verify');
+	} else if (!/[A-Za-z]/.test(cardHolderNameValue)) {
+		cardHolderName.classList.add('error_value');
+		cardHolderError.textContent = 'The field must contains only letters';
+		buyCardValidationError++;
+		cardHolderName.classList.remove('verify');
+	} else {
+		cardHolderName.classList.remove('error_value');
+		cardHolderName.classList.add('verify');
+	}
+
+	// валидация поля postal code
+	postalCodeError.textContent = '';
+	if(postalCodeValue === '') {
+		postalCode.classList.add('error_value');
+		postalCodeError.textContent = 'The field is not filled';
+		buyCardValidationError++;
+		postalCode.classList.remove('verify');
+	} else {
+		postalCode.classList.remove('error_value');
+		postalCode.classList.add('verify')
+	}
+
+	cityNameError.textContent = '';
+	if(cityNameValue === '') {
+		cityName.classList.add('error_value');
+		cityNameError.textContent = 'The field is not filled';
+		buyCardValidationError++
+		cityName.classList.remove('verify');
+	} else {
+		cityName.classList.remove('error_value');
+		cityName.classList.add('verify');
+	}
+
+	if (buyCardValidationError > 0) {
+		return
+	}
+
+	location.reload();
+
+	localStorage.setItem('userSubscription', true);
+} )

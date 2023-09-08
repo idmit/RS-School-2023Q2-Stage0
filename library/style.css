@@ -1532,13 +1532,7 @@ html {
 	border: 1px solid green;
 }
 
-.error-text-login {
-	margin-top: -5px;
-	font-size: 14px;
-	color: red;
-}
-
-.error-text-pass {
+.error-text {
 	margin-top: -5px;
 	font-size: 14px;
 	color: red;
