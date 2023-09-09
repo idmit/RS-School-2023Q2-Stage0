@@ -370,7 +370,7 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 	const userInitials = `${userNameInit[0]}${userSurNameInit[0]}`;
 
 	if (localStorage.getItem('userName') && localStorage.getItem('surName')) {
-		
+
 		profileBtn.innerHTML = userInitials;
 
 		profileBtn.classList.add('profile-button-verify');
@@ -381,7 +381,7 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 			<a href="#" class="profile__menu_link profile__menu_link_register profile__menu_link-logout">Log Out</a>
 		`
 
-		
+
 		console.log(profileBox);
 		const myProfileLink = document.querySelector('.profile__menu_link_login');
 
@@ -391,15 +391,15 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 
 		const closeProfileModal = event => {
 			const target = event.target;
-		
+
 			if (target === profileBox || target.closest('.profile__close_btn')) {
 				profileBox.classList.remove('modal--active');
 			}
 		};
-		
+
 		profileBox.addEventListener('click', closeProfileModal);
 	}
-	
+
 	const profileContent = document.querySelector('.profile');
 
 	profileContent.innerHTML = `
@@ -423,14 +423,30 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 					<li class="profile__modal_item">
 						<span class="profile__modal_list-name">Books</span>
 						<img src="assets/svg/book.svg" alt="person-svg" class="profile__modal_svg">
-						<span class="profile__modal_list-number books-amount"></span>
+						<span class="profile__modal_list-number books-amount">0</span>
 					</li>
 				</ul>
-				<span class="strong__title">Rented books</span>
-				<ul class="profile__list_rented-books">
-					<li class="item__list_book">The Last Queen, Clive Irving</li>
-					<li class="item__list_book">Dominicana, Angie Cruz</li>
-				</ul>
+				<div class="profile__rented-books">
+					<span class="strong__title">Rented books</span>
+					<ul class="profile__list_rented-books">
+						<li class="item__list_book">The Last Queen, Clive Irving</li>
+						<li class="item__list_book">Dominicana, Angie Cruz</li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+						<li class="item__list_book"></li>
+					</ul>
+				</div>
 				<span class="profile__modal_card-number">
 					Card number
 					<label for="number-copy">
@@ -445,16 +461,14 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 	
 	`
 	const copyProfileNumber = document.querySelector('.copy-card-number');
-	
+
 	copyProfileNumber.addEventListener('click', () => {
 		const copyProfileNumberInp = document.getElementById('number-copy');
 		copyProfileNumberInp.select();
 		document.execCommand("copy");
 	});
 
-
-}
-
+};
 
 
 const logOutBtn = document.querySelector('.profile__menu_link-logout');
@@ -468,7 +482,7 @@ if (logOutBtn) {
 
 
 // покупка книг и изменение счетчика книг 
-if (localStorage.getItem('userSubscription') === 'true') {
+if (localStorage.getItem('userSubscription') === 'true' && localStorage.getItem('userAuth') === 'true') {
 	const buyBookBtns = document.querySelectorAll('.button-buy');
 
 	buyBookBtns.forEach(btn => {
@@ -481,9 +495,16 @@ if (localStorage.getItem('userSubscription') === 'true') {
 			localStorage.setItem('userOwnBooks', amountBooksOwn);
 			const profileBooksNumber = document.querySelectorAll('.books-amount');
 			profileBooksNumber.forEach(el => {
-			el.textContent = localStorage.getItem('userOwnBooks');
+				el.textContent = localStorage.getItem('userOwnBooks');
 			});
-
+			const booksTitleNames = document.querySelectorAll('.book-title-name');
+			const itemListBooks = document.querySelectorAll('.item__list_book');
+			// itemListBooks.forEach(el => {
+			// 	el.textContent = booksTitleNames.forEach(e => {
+			// 		console.log(e.value);
+			// 		e.value;
+			// 	})
+			// })
 		})
 	})
 };
@@ -491,7 +512,7 @@ if (localStorage.getItem('userSubscription') === 'true') {
 if (localStorage.getItem('userAuth') === 'true') {
 	const libraryCardContent = document.querySelector('.library-card');
 
-		libraryCardContent.innerHTML = `
+	libraryCardContent.innerHTML = `
 					<form action="#" method="get" class="find-card">
 						<h3 class="card-title">Find your Library card</h3>
 						<div class="card-body change-card-body">
@@ -533,15 +554,15 @@ if (localStorage.getItem('userAuth') === 'true') {
 							</div>
 						</div>
 	`;
-	
+
 	const openProfileBtn = document.querySelector('.open-profile');
 	openProfileBtn.addEventListener('click', () => {
 		profileBox.classList.add('modal--active');
 	})
 };
 
-if(location.reload) {
-  localStorage.setItem('userOwnBooks', 0);
+if (location.reload) {
+	localStorage.setItem('userOwnBooks', 0);
 };
 
 //
@@ -764,24 +785,24 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 
 if (localStorage.getItem('userAuth') === 'true' && localStorage.getItem('userSubscription') !== 'true') {
 
-const buyCardModal = document.querySelector('.buy-card_modal');
-const bookBuyBtn = document.querySelectorAll('.button-buy');
-bookBuyBtn.forEach(el => {
-	el.addEventListener('click', () => {
-		buyCardModal.classList.add('modal--active');
-	})
-	
-});
+	const buyCardModal = document.querySelector('.buy-card_modal');
+	const bookBuyBtn = document.querySelectorAll('.button-buy');
+	bookBuyBtn.forEach(el => {
+		el.addEventListener('click', () => {
+			buyCardModal.classList.add('modal--active');
+		})
 
-const closeCardModal = event => {
-	const target = event.target;
+	});
 
-	if (target === buyCardModal || target.closest('.profile__close_btn')) {
-		buyCardModal.classList.remove('modal--active');
-	}
-};
+	const closeCardModal = event => {
+		const target = event.target;
 
-buyCardModal.addEventListener('click', closeCardModal);
+		if (target === buyCardModal || target.closest('.profile__close_btn')) {
+			buyCardModal.classList.remove('modal--active');
+		}
+	};
+
+	buyCardModal.addEventListener('click', closeCardModal);
 
 }
 

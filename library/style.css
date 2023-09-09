@@ -210,11 +210,17 @@ html {
 	font-style: normal;
 	font-weight: 400;
 	line-height: 20px;
+	transition: all 0.2s;
 	/* 133.333% */
 }
 
 .profile__menu_link:first-of-type {
 	margin-bottom: 10px;
+}
+
+.profile__menu_link:hover {
+	transform: scale(1.1);
+	color: #BB945F;
 }
 
 .welcome {
@@ -508,6 +514,15 @@ html {
 
 .tabs__content_active {
 	display: flex;
+}
+
+/* .item__list_book {
+	list-style-type: none;
+} */
+
+.profile__rented-books {
+	height: 100px;
+	margin-bottom: 40px;
 }
 
 @keyframes showContent {
@@ -1338,15 +1353,6 @@ html {
 	text-transform: capitalize;
 }
 
-.strong__title {
-	color: #0C0C0E;
-	font-family: Inter;
-	font-size: 25px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 20px; /* 80% */
-}
-
 .item__list_book {
 	color: #000;
 	font-family: Inter;
@@ -1362,8 +1368,15 @@ html {
 	margin-bottom: 10px;
 }
 
-.item__list_book:last-of-type {
-	margin-bottom: 40px;
+.strong__title {
+	display: inline-block;
+	margin-bottom: 30px;
+	color: #0C0C0E;
+	font-family: Inter;
+	font-size: 25px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 80% */
 }
 
 .profile__modal_card-number {
@@ -1573,6 +1586,13 @@ html {
 
 .profile__title_auth {
 	font-size: 12px;
+}
+
+.profile__list_rented-books {
+	/* list-style-type: none; */
+	height: 50px;
+	margin: 0;
+	overflow: auto;
 }
 
 @media (max-width: 1024px) {
