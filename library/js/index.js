@@ -423,7 +423,7 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 					<li class="profile__modal_item">
 						<span class="profile__modal_list-name">Books</span>
 						<img src="assets/svg/book.svg" alt="person-svg" class="profile__modal_svg">
-						<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>
+						<span class="profile__modal_list-number books-amount"></span>
 					</li>
 				</ul>
 				<span class="strong__title">Rented books</span>
@@ -454,6 +454,39 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 
 
 }
+
+
+
+const logOutBtn = document.querySelector('.profile__menu_link-logout');
+
+if (logOutBtn) {
+	logOutBtn.addEventListener('click', () => {
+		localStorage.removeItem('userAuth');
+		location.reload();
+	})
+}
+
+
+// покупка книг и изменение счетчика книг 
+if (localStorage.getItem('userSubscription') === 'true') {
+	const buyBookBtns = document.querySelectorAll('.button-buy');
+
+	buyBookBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			btn.classList.add('button-own');
+			btn.classList.add('text-own');
+			btn.textContent = 'Own';
+			let amountBooksOwn = localStorage.getItem('userOwnBooks');
+			amountBooksOwn++;
+			localStorage.setItem('userOwnBooks', amountBooksOwn);
+			const profileBooksNumber = document.querySelectorAll('.books-amount');
+			profileBooksNumber.forEach(el => {
+			el.textContent = localStorage.getItem('userOwnBooks');
+			});
+
+		})
+	})
+};
 
 if (localStorage.getItem('userAuth') === 'true') {
 	const libraryCardContent = document.querySelector('.library-card');
@@ -486,7 +519,7 @@ if (localStorage.getItem('userAuth') === 'true') {
 								<li class="profile__modal_item change-item">
 									<span class="profile__modal_list-name change-list-name">Books</span>
 									<img src="assets/svg/book.svg" alt="person-svg" class="profile__modal_svg">
-									<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>
+									<span class="profile__modal_list-number books-amount">${localStorage.getItem('userOwnBooks')}</span>
 								</li>
 							</ul>
 							</div>
@@ -505,43 +538,11 @@ if (localStorage.getItem('userAuth') === 'true') {
 	openProfileBtn.addEventListener('click', () => {
 		profileBox.classList.add('modal--active');
 	})
-}
-
-const logOutBtn = document.querySelector('.profile__menu_link-logout');
-
-if (logOutBtn) {
-	logOutBtn.addEventListener('click', () => {
-		localStorage.removeItem('userAuth');
-		location.reload();
-	})
-}
-
-
-// покупка книг и изменение счетчика книг 
-if (localStorage.getItem('userSubscription') === 'true') {
-	const buyBookBtns = document.querySelectorAll('.button-buy');
-
-	buyBookBtns.forEach(btn => {
-		btn.addEventListener('click', () => {
-			btn.classList.add('button-own');
-			btn.classList.add('text-own');
-			btn.textContent = 'Own';
-			btn.setAttribute('disabled');
-			let amountBooksOwn = localStorage.getItem('userOwnBooks');
-			amountBooksOwn++;
-			localStorage.setItem('userOwnBooks', amountBooksOwn);
-			const profileBooksNumber = document.querySelectorAll('.profile__modal_list-number');
-			profileBooksNumber.forEach(el => {
-				el.innerHTML = `<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>`
-			});
-
-		})
-	})
 };
 
 if(location.reload) {
   localStorage.setItem('userOwnBooks', 0);
-}
+};
 
 //
 // получаем форму авторизации
