@@ -225,13 +225,13 @@ const linkLogin = document.getElementById('login__link');
 const linkRegistry = document.getElementById('register__link');
 
 // перебрать все кнопки для открытия модального окна логина и добавить к каждой класс
-if (localStorage.getItem('userReg') == 'true') {
+if (localStorage.getItem('userAuth') !== 'true') {
 	openLogin.forEach(btn => {
 		btn.addEventListener('click', () => {
 			login.classList.add('modal--active');
 		})
 	});
-}
+};
 
 
 
@@ -241,7 +241,7 @@ openRegistry.forEach(btn => {
 	btn.addEventListener('click', () => {
 		registry.classList.add('modal--active');
 	})
-})
+});
 
 // Альтернатива
 // for (let i = 0; i <hr openRegistry.length; i++) {
@@ -517,6 +517,32 @@ if (logOutBtn) {
 }
 
 
+// покупка книг и изменение счетчика книг 
+if (localStorage.getItem('userSubscription') === 'true') {
+	const buyBookBtns = document.querySelectorAll('.button-buy');
+
+	buyBookBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			btn.classList.add('button-own');
+			btn.classList.add('text-own');
+			btn.textContent = 'Own';
+			btn.setAttribute('disabled');
+			let amountBooksOwn = localStorage.getItem('userOwnBooks');
+			amountBooksOwn++;
+			localStorage.setItem('userOwnBooks', amountBooksOwn);
+			const profileBooksNumber = document.querySelectorAll('.profile__modal_list-number');
+			profileBooksNumber.forEach(el => {
+				el.innerHTML = `<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>`
+			});
+
+		})
+	})
+};
+
+if(location.reload) {
+  localStorage.setItem('userOwnBooks', 0);
+}
+
 //
 // получаем форму авторизации
 const loginForm = document.querySelector('.login__form');
@@ -735,7 +761,7 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 
 // закрытие модалки покупки абонемента при клике вне области и на крестик
 
-// if (localStorage.getItem('userAuth') === 'true' && localStorage.get('userReg') === 'true') {
+if (localStorage.getItem('userAuth') === 'true' && localStorage.getItem('userSubscription') !== 'true') {
 
 const buyCardModal = document.querySelector('.buy-card_modal');
 const bookBuyBtn = document.querySelectorAll('.button-buy');
@@ -756,7 +782,7 @@ const closeCardModal = event => {
 
 buyCardModal.addEventListener('click', closeCardModal);
 
-// }
+}
 
 // получаем форму покупки абонемента 
 

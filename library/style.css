@@ -654,13 +654,17 @@ html {
 	height: 555px;
 }
 
+
 .button-own {
 	width: 75px;
 	height: 30px;
 	margin-top: auto;
 	border: 1px solid #BB945F;
 	border-radius: 2px;
+	margin-top: auto;
 	background-color: #ffffff;
+	transition: none;
+	pointer-events: none;
 }
 
 .text-own {
