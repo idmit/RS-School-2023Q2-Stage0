@@ -9,7 +9,7 @@
 		burger.classList.toggle('burger_active');
 		menu.classList.toggle('nav-list_active');
 	});
-	for(let i = 0; i < menuLinks.length; i++) {
+	for (let i = 0; i < menuLinks.length; i++) {
 		menuLinks[i].addEventListener('click', () => {
 			menu.classList.remove('nav-list_active');
 			burger.classList.remove('burger_active');
@@ -113,22 +113,22 @@ dots.forEach((circle, i) => {
 // tabs start
 document.addEventListener('DOMContentLoaded', () => {
 	// объявляем основную функцию для вкладок, чтобы вся логика была в одном месте
-	const tabs = () => { 
+	const tabs = () => {
 		// ищем элемент с кнопками и записываем в константу
-		const head = document.querySelector('.tabs__head'); 
+		const head = document.querySelector('.tabs__head');
 		// ищем элемент с контентом и записываем в константу
 		const body = document.querySelector('.tabs__body');
 
 		// объявляем функцию для получения названия активной вкладки
-		const getActiveTabName = () => { 
+		const getActiveTabName = () => {
 			// возвращаем значение data-tab активной кнопки
-			return head.querySelector('.tabs__caption_active').dataset.tab; 
-			
+			return head.querySelector('.tabs__caption_active').dataset.tab;
+
 		}
 
 		// объявляем функцию для установки активного элемента контента
 		const setActiveContent = () => {
-			 // если уже есть активный элемент контента
+			// если уже есть активный элемент контента
 			if (body.querySelector('.tabs__content_active')) {
 				// то скрываем его
 				body.querySelector('.tabs__content_active').classList.remove('tabs__content_active')
@@ -136,10 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			// затем ищем элемент контента, у которого значение data-tab совпадает со значением data-tab активной кнопки и отображаем его
 			body.querySelector(`[data-tab=${getActiveTabName()}]`).classList.add('tabs__content_active');
 		}
-		 // проверяем при загрузке страницы, есть ли активная вкладка
+		// проверяем при загрузке страницы, есть ли активная вкладка
 		if (!head.querySelector('.tabs__caption_active')) { // если активной вкладки нет
 			// то делаем активной по-умолчанию первую вкладку
-			head.querySelector('.tabs__caption').classList.add('tabs__caption_active'); 
+			head.querySelector('.tabs__caption').classList.add('tabs__caption_active');
 		}
 
 		// устанавливаем активный элемент контента в соответствии с активной кнопкой при загрузке страницы
@@ -225,19 +225,16 @@ const linkLogin = document.getElementById('login__link');
 const linkRegistry = document.getElementById('register__link');
 
 // перебрать все кнопки для открытия модального окна логина и добавить к каждой класс
-openLogin.forEach(btn => {
-	btn.addEventListener('click', () => {
-		login.classList.add('modal--active');
-	})
-});
+if (localStorage.getItem('userReg') == 'true') {
+	openLogin.forEach(btn => {
+		btn.addEventListener('click', () => {
+			login.classList.add('modal--active');
+		})
+	});
+}
 
 
-// Альтернатива
-// for (let i = 0; i < openLogin.length; i++) {
-// 	openLogin[i].addEventListener('click', () => {
-// 		login.classList.add('modal--active');
-// 	})
-// };
+
 
 // перебрать все кнопки для открытия модального окна регистрации и добавить к каждой класс
 openRegistry.forEach(btn => {
@@ -269,13 +266,24 @@ linkRegistry.addEventListener('click', () => {
 const closeModal = event => {
 	// ловим куда точно был клик мышкой
 	const target = event.target;
-	
+
 	// если клик по окну модалки или на кнопку закрытия, а не по самой форме, закрываем 
 	if (target === login || target === registry || target.closest('.modal__btn')) {
 		login.classList.remove('modal--active');
 		registry.classList.remove('modal--active');
 	}
 };
+
+
+// если пользователь не зарегистрирован нажатие на кнопку Check the card ни к чему не приведёт.
+
+if (localStorage.getItem('userReg') !== 'true') {
+	const findCardForm = document.querySelector('.find-card');
+
+	findCardForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+	})
+}
 
 // ловим события клика и применяем функцию закрытия модалки
 login.addEventListener('click', closeModal);
@@ -349,143 +357,108 @@ registryForm.addEventListener('submit', () => {
 	localStorage.setItem('cardNumber', convertedNum);
 	// пользователь зарегистрировался 
 	localStorage.setItem('userReg', true);
-	// localStorage.setItem('userAuth', true);
+	localStorage.setItem('userAuth', true);
 });
 
-//
-// получаем форму авторизации
-const loginForm = document.querySelector('.login__form');
+// если юзер прошел регистрацию и авторизирован
+const profileBox = document.querySelector('.profile__modal');
+if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth') === 'true') {
+	// находим и подставляем инициалы пользователя в иконку пользователя и карточку профиля
 
-//получаем все поля авторизации
-const loginNameInp = document.getElementById('login');
-const loginPassInp = document.getElementById('login-password');
+	const userNameInit = localStorage.getItem('userName');
+	const userSurNameInit = localStorage.getItem('surName');
+	const userInitials = `${userNameInit[0]}${userSurNameInit[0]}`;
 
-// получаем кнопку отправки формы авторизации
-const loginFormBtn = document.querySelector('.login-form-btn');
+	if (localStorage.getItem('userName') && localStorage.getItem('surName')) {
+		
+		profileBtn.innerHTML = userInitials;
 
-// получаем спаны для вывода ошибок
-const autLoginError = document.querySelector('.error-text-login');
-const autPassError = document.querySelector('.error-text-pass');
+		profileBtn.classList.add('profile-button-verify');
 
-// обработка клика по кнопке submit формы авторизации 
-loginForm.addEventListener('submit', (e) => {
-	// e.stopPropagation();
-	e.preventDefault();
-	// получаем введенные значения инпут
-	let loginNameValue = loginNameInp.value.replace(/\s/g, '');
-	let loginPassValue = loginPassInp.value.replace(/\s/g, '');
+		profileMenu.innerHTML = `
+			<h5 class="profile__menu_title profile__title_auth">${localStorage.getItem('cardNumber')}</h5>
+			<a href="#" class="profile__menu_link profile__menu_link_login">My profile</a>
+			<a href="#" class="profile__menu_link profile__menu_link_register profile__menu_link-logout">Log Out</a>
+		`
 
-	// датчик валидации 
-	let loginErrorResult = 0;
+		
+		console.log(profileBox);
+		const myProfileLink = document.querySelector('.profile__menu_link_login');
 
-	autLoginError.textContent = '';
-	if (loginNameValue !== localStorage.getItem('userEmail') && loginNameValue !== localStorage.getItem('cardNumber')) {
-	autLoginError.textContent = 'This email or card number is not registered';
-	loginNameInp.classList.add('error_value');
-	loginErrorResult++
-	} else {
-	loginNameInp.classList.remove('error_value');
-	loginNameInp.classList.add('verify');
+		myProfileLink.addEventListener('click', () => {
+			profileBox.classList.add('modal--active');
+		});
+
+		const closeProfileModal = event => {
+			const target = event.target;
+		
+			if (target === profileBox || target.closest('.profile__close_btn')) {
+				profileBox.classList.remove('modal--active');
+			}
+		};
+		
+		profileBox.addEventListener('click', closeProfileModal);
 	}
-
-	autPassError.textContent = '';
-	if (loginPassValue !== localStorage.getItem('userPassword')) {
-	autPassError.textContent = 'incorrect password';
-	loginPassInp.classList.add('error_value');
-	loginErrorResult++
-	} else {
-	loginPassInp.classList.remove('error_value');
-	loginPassInp.classList.add('verify')
-	}
-
-	if (loginErrorResult > 0) {
-		return;
-	}
-
-
-	let userVisits = Number(localStorage.getItem('userVisits'));
-	userVisitsNum(userVisits);
-
-	location.reload();
-
-	localStorage.setItem('userAuth', true);
-
-})
-
-
-// если юзер зарегистрирован
-	if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth') !== 'true') {
 	
+	const profileContent = document.querySelector('.profile');
 
-
+	profileContent.innerHTML = `
+	<div class="profile__modal_left">
+				<span class="profile__modal_init">${userInitials}</span>
+				<span class="profile__modal_name">${userNameInit} ${userSurNameInit}</span>
+			</div>
+			<div class="profile__modal_right">
+				<h3 class="profile__modal_title">My Profile</h3>
+				<ul class="profile__modal_list">
+					<li class="profile__modal_item">
+						<span class="profile__modal_list-name">Visits</span>
+						<img src="assets/svg/person.svg" alt="person-svg" class="profile__modal_svg">
+						<span class="profile__modal_list-number">${localStorage.getItem('Visits')}</span>
+					</li>
+					<li class="profile__modal_item">
+						<span class="profile__modal_list-name">Bonuses</span>
+						<img src="assets/svg/Star1.svg" alt="person-svg" class="profile__modal_svg"> 
+						<span class="profile__modal_list-number">1240</span>
+					</li>
+					<li class="profile__modal_item">
+						<span class="profile__modal_list-name">Books</span>
+						<img src="assets/svg/book.svg" alt="person-svg" class="profile__modal_svg">
+						<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>
+					</li>
+				</ul>
+				<span class="strong__title">Rented books</span>
+				<ul class="profile__list_rented-books">
+					<li class="item__list_book">The Last Queen, Clive Irving</li>
+					<li class="item__list_book">Dominicana, Angie Cruz</li>
+				</ul>
+				<span class="profile__modal_card-number">
+					Card number
+					<label for="number-copy">
+						<input type="text" value="${localStorage.getItem('cardNumber')}" id="number-copy" class="profile__modal_card-numb" readonly>
+						<img src="assets/svg/docs.svg" alt="card-number-book" class="copy-card-number">
+					</label>
+				</span>
+			</div>
+			<button class="modal__btn modal__close_btn profile__close_btn">
+				<img src="assets/svg/cross.svg" alt="close-btn" class="close_btn">
+			</button>
 	
-	// получаем форму проверки карты
-	const cardFindForm = document.querySelector('.find-card');
+	`
+	const copyProfileNumber = document.querySelector('.copy-card-number');
 	
-	// получаем все инпуты 
-	const cardNameInp = document.querySelector('.reader-name-input');
-	const cardNumberInp = document.getElementById('reader-card');
-
-	// получаем поля для вывода ошибок в инпутах
-
-	const textNameError = document.querySelector('.error-text-card-name');
-	const textNumberError = document.querySelector('.error-text-card-number');
-
-	// получаем кнопку сабмита
-	const cardBtn = document.querySelector('.button-check');
+	copyProfileNumber.addEventListener('click', () => {
+		const copyProfileNumberInp = document.getElementById('number-copy');
+		copyProfileNumberInp.select();
+		document.execCommand("copy");
+	});
 
 
-	console.log(localStorage.getItem('cardNumber'));
+}
 
-	// отменяем дефолтное поведение кнопки submit
-	cardFindForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-	})
+if (localStorage.getItem('userAuth') === 'true') {
+	const libraryCardContent = document.querySelector('.library-card');
 
-	cardBtn.addEventListener('click', () => {
-
-		let cardNameValue = cardNameInp.value.replace(/(^|\s)\S/g, function (x) { return x.toUpperCase() });
-		let cardNumberValue = cardNumberInp.value.toUpperCase();
-		console.log(cardNumberValue);
-		let cardValidationError = 0;
-
-		textNameError.textContent = '';
-		if (cardNameValue === '') {
-			textNameError.textContent = 'The field is not filled';
-			cardValidationError++
-		} else if (cardNameValue !== `${localStorage.getItem('userName')} ${localStorage.getItem('surName')}` ) {
-			textNameError.textContent = 'User is not found';
-			cardValidationError++
-		} else {
-			cardNameInp.classList.add('verify');
-		}
-
-		textNumberError.textContent = '';
-		if (cardNumberValue === '') {
-			textNumberError.textContent = 'The field is not filled';
-			cardValidationError++
-		} else if (cardNumberValue !== localStorage.getItem('cardNumber')) {
-			textNumberError.textContent = 'Card number is not found';
-			cardValidationError++;
-		} else {
-			cardNumberInp.classList.add('verify');
-		}
-
-		if (cardValidationError > 0) {
-			return;
-		}
-
-		 //сбросить все значения инпутов
-		cardNameInp.value = '';
-		cardNameInp.classList.remove('verify');
-		cardNumberInp.value = '';
-		cardNumberInp.classList.remove('verify');
-
-
-
-		const libraryCardContent = document.querySelector('.library-card');
-
-	libraryCardContent.innerHTML = `
+		libraryCardContent.innerHTML = `
 					<form action="#" method="get" class="find-card">
 						<h3 class="card-title">Find your Library card</h3>
 						<div class="card-body change-card-body">
@@ -519,11 +492,204 @@ loginForm.addEventListener('submit', (e) => {
 							</div>
 						</form>
 						<div class="text-right">
-							<h3 class="get-card-title">Visit your profile</h3>
-							<p class="text-card">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
-								<div class="buttons-get-card">
-									<button class="button-get-card open-login"><span class="button-get-text">Profile</span></button>
-								</div>
+						<h3 class="get-card-title">Get a reader card</h3>
+						<p class="text-card">You will be able to see a reader card after logging into account or you can register a
+							new account</p>
+							<div class="buttons-get-card">
+								<button class="button-get-card open-profile"><span class="button-get-text">Profile</span></button>
+							</div>
+						</div>
+	`;
+	
+	const openProfileBtn = document.querySelector('.open-profile');
+	openProfileBtn.addEventListener('click', () => {
+		profileBox.classList.add('modal--active');
+	})
+}
+
+const logOutBtn = document.querySelector('.profile__menu_link-logout');
+
+if (logOutBtn) {
+	logOutBtn.addEventListener('click', () => {
+		localStorage.removeItem('userAuth');
+		location.reload();
+	})
+}
+
+
+//
+// получаем форму авторизации
+const loginForm = document.querySelector('.login__form');
+
+//получаем все поля авторизации
+const loginNameInp = document.getElementById('login');
+const loginPassInp = document.getElementById('login-password');
+
+// получаем кнопку отправки формы авторизации
+const loginFormBtn = document.querySelector('.login-form-btn');
+
+// получаем спаны для вывода ошибок
+const autLoginError = document.querySelector('.error-text-login');
+const autPassError = document.querySelector('.error-text-pass');
+
+// обработка клика по кнопке submit формы авторизации 
+loginForm.addEventListener('submit', (e) => {
+	// e.stopPropagation();
+	e.preventDefault();
+	// получаем введенные значения инпут
+	let loginNameValue = loginNameInp.value.replace(/\s/g, '');
+	let loginPassValue = loginPassInp.value.replace(/\s/g, '');
+
+	// датчик валидации 
+	let loginErrorResult = 0;
+
+	autLoginError.textContent = '';
+	if (loginNameValue !== localStorage.getItem('userEmail') && loginNameValue !== localStorage.getItem('cardNumber')) {
+		autLoginError.textContent = 'This email or card number is not registered';
+		loginNameInp.classList.add('error_value');
+		loginErrorResult++
+	} else {
+		loginNameInp.classList.remove('error_value');
+		loginNameInp.classList.add('verify');
+	}
+
+	autPassError.textContent = '';
+	if (loginPassValue !== localStorage.getItem('userPassword')) {
+		autPassError.textContent = 'incorrect password';
+		loginPassInp.classList.add('error_value');
+		loginErrorResult++
+	} else {
+		loginPassInp.classList.remove('error_value');
+		loginPassInp.classList.add('verify')
+	}
+
+	if (loginErrorResult > 0) {
+		return;
+	}
+
+
+	let userVisits = Number(localStorage.getItem('Visits'));
+	userVisitsNum(userVisits);
+
+	location.reload();
+
+	localStorage.setItem('userAuth', true);
+
+})
+
+
+// если юзер зарегистрирован и не авторизирован 
+if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth') !== 'true') {
+
+
+
+	// получаем форму проверки карты
+	const cardFindForm = document.querySelector('.find-card');
+
+	// получаем все инпуты 
+	const cardNameInp = document.querySelector('.reader-name-input');
+	const cardNumberInp = document.getElementById('reader-card');
+
+	// получаем поля для вывода ошибок в инпутах
+
+	const textNameError = document.querySelector('.error-text-card-name');
+	const textNumberError = document.querySelector('.error-text-card-number');
+
+	// получаем кнопку сабмита
+	const cardBtn = document.querySelector('.button-check');
+
+
+	console.log(localStorage.getItem('cardNumber'));
+
+	// отменяем дефолтное поведение кнопки submit
+	cardFindForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+	})
+
+	cardBtn.addEventListener('click', () => {
+
+		let cardNameValue = cardNameInp.value.replace(/(^|\s)\S/g, function (x) { return x.toUpperCase() });
+		let cardNumberValue = cardNumberInp.value.toUpperCase();
+		console.log(cardNumberValue);
+		let cardValidationError = 0;
+
+		textNameError.textContent = '';
+		if (cardNameValue === '') {
+			textNameError.textContent = 'The field is not filled';
+			cardValidationError++
+		} else if (cardNameValue !== `${localStorage.getItem('userName')} ${localStorage.getItem('surName')}`) {
+			textNameError.textContent = 'User is not found';
+			cardValidationError++
+		} else {
+			cardNameInp.classList.add('verify');
+		}
+
+		textNumberError.textContent = '';
+		if (cardNumberValue === '') {
+			textNumberError.textContent = 'The field is not filled';
+			cardValidationError++
+		} else if (cardNumberValue !== localStorage.getItem('cardNumber')) {
+			textNumberError.textContent = 'Card number is not found';
+			cardValidationError++;
+		} else {
+			cardNumberInp.classList.add('verify');
+		}
+
+		if (cardValidationError > 0) {
+			return;
+		}
+
+		//сбросить все значения инпутов
+		cardNameInp.value = '';
+		cardNameInp.classList.remove('verify');
+		cardNumberInp.value = '';
+		cardNumberInp.classList.remove('verify');
+
+
+
+		const libraryCardContent = document.querySelector('.library-card');
+
+		libraryCardContent.innerHTML = `
+					<form action="#" method="get" class="find-card">
+						<h3 class="card-title">Find your Library card</h3>
+						<div class="card-body change-card-body">
+							<div class="gold-bg change-bg">
+								<h4 class="title-gold-bg">Brooklyn Public Library</h4>
+								<label for="reader-name">
+									<input type="text" id="reader-name" placeholder="${localStorage.getItem('userName')} ${localStorage.getItem('surName')}" class="reader-name-input reg_placeholder" readonly>
+								</label>
+								<label for="reader-card">
+									<input type="text" id="reader-card" placeholder="${localStorage.getItem('cardNumber')}" class="reader-name-input reg_placeholder" readonly>
+									<span class="error-text-card-number"></span>
+								</label>
+							</div>
+							<ul class="profile__modal_list change_list">
+								<li class="profile__modal_item change-item">
+									<span class="profile__modal_list-name change-list-name">Visits</span>
+									<img src="assets/svg/person.svg" alt="person-svg" class="profile__modal_svg">
+									<span class="profile__modal_list-number">${localStorage.getItem('Visits')}</span>
+								</li>
+								<li class="profile__modal_item change-item">
+									<span class="profile__modal_list-name change-list-name">Bonuses</span>
+									<img src="assets/svg/Star1.svg" alt="person-svg" class="profile__modal_svg"> 
+									<span class="profile__modal_list-number">1240</span>
+								</li>
+								<li class="profile__modal_item change-item">
+									<span class="profile__modal_list-name change-list-name">Books</span>
+									<img src="assets/svg/book.svg" alt="person-svg" class="profile__modal_svg">
+									<span class="profile__modal_list-number">${localStorage.getItem('userOwnBooks')}</span>
+								</li>
+							</ul>
+							</div>
+						</form>
+						<div class="text-right">
+						<h3 class="get-card-title">Get a reader card</h3>
+						<p class="text-card">You will be able to see a reader card after logging into account or you can register a
+							new account</p>
+							<div class="buttons-get-card">
+								<button class="button-get-card open-registry"><span class="button-get-text">Sign Up</span></button>
+								<button class="button-get-card open-login"><span class="button-get-text">Log in</span></button>
+							</div>
 						</div>
 	`;
 		setTimeout(() => {
@@ -554,7 +720,7 @@ loginForm.addEventListener('submit', (e) => {
 									<button class="button-get-card open-login"><span class="button-get-text">Log in</span></button>
 								</div>
 						</div>
-			`
+			`;
 			location.reload();
 		}, 10000);
 
@@ -562,7 +728,35 @@ loginForm.addEventListener('submit', (e) => {
 
 };
 
+
+
 // этап покупки абонемента
+
+
+// закрытие модалки покупки абонемента при клике вне области и на крестик
+
+// if (localStorage.getItem('userAuth') === 'true' && localStorage.get('userReg') === 'true') {
+
+const buyCardModal = document.querySelector('.buy-card_modal');
+const bookBuyBtn = document.querySelectorAll('.button-buy');
+bookBuyBtn.forEach(el => {
+	el.addEventListener('click', () => {
+		buyCardModal.classList.add('modal--active');
+	})
+	
+});
+
+const closeCardModal = event => {
+	const target = event.target;
+
+	if (target === buyCardModal || target.closest('.profile__close_btn')) {
+		buyCardModal.classList.remove('modal--active');
+	}
+};
+
+buyCardModal.addEventListener('click', closeCardModal);
+
+// }
 
 // получаем форму покупки абонемента 
 
@@ -590,6 +784,7 @@ const cityNameError = document.querySelector('.error-text-city');
 // получили кнопку сабмита формы
 const buyCardFormBtn = document.querySelector('.button-buy-modal');
 
+// отключаем стандартное поведение кнопки у формы
 buyCardForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 })
@@ -694,7 +889,7 @@ buyCardFormBtn.addEventListener('click', () => {
 
 	// валидация поля postal code
 	postalCodeError.textContent = '';
-	if(postalCodeValue === '') {
+	if (postalCodeValue === '') {
 		postalCode.classList.add('error_value');
 		postalCodeError.textContent = 'The field is not filled';
 		buyCardValidationError++;
@@ -705,7 +900,7 @@ buyCardFormBtn.addEventListener('click', () => {
 	}
 
 	cityNameError.textContent = '';
-	if(cityNameValue === '') {
+	if (cityNameValue === '') {
 		cityName.classList.add('error_value');
 		cityNameError.textContent = 'The field is not filled';
 		buyCardValidationError++
@@ -722,4 +917,5 @@ buyCardFormBtn.addEventListener('click', () => {
 	location.reload();
 
 	localStorage.setItem('userSubscription', true);
-} )
+});
+

@@ -1258,6 +1258,12 @@ html {
 	font-weight: 400;
 	line-height: 20px; /* 100% */
 	text-transform: capitalize;
+	max-width: 120px;
+	hyphens: auto;
+}
+
+.copy-card-number {
+	cursor: pointer;
 }
 
 .profile__modal_right {
@@ -1546,6 +1552,23 @@ html {
 .error-text-card-number {
 	font-size: 14px;
 	color: red;
+}
+
+.profile-button-verify {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background-color: #ffffff;
+	color: #BB945F;
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.profile__title_auth {
+	font-size: 12px;
 }
 
 @media (max-width: 1024px) {
