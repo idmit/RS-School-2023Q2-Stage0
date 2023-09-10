@@ -1,4 +1,13 @@
-
+console.log(`
+Итого : 194
+1. Этап 1 - 46 
+	Неактивными становятся не только выделенные кнопки, но и стрелочки на границах карусели. -2
+2. Этап 2 - 49
+3. Этап 3 - 29
+4. Этап 4 - 70 
+	При наведении курсором на иконку пользователя должно отображаться полное имя пользователя (атрибут title). -2
+	Кроме того после нажатия обновляется не только счетчик, но и название книги должно отобразится в разделе Rented Books. Название формируется по принципу <название книги>, <автор книги>. В случае если название книги слишком длинное или список стал слишком большой список книг в блоке Rented Books становится скроллируемым (по необходимости горизонтально/ вертикально или оба скролла сразу) Тайтл Rented Books скроллироваться не должен -2
+`);
 // start burger menu
 (function () {
 	const burger = document.querySelector('.burger');
@@ -382,7 +391,7 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 		`
 
 
-		console.log(profileBox);
+
 		const myProfileLink = document.querySelector('.profile__menu_link_login');
 
 		myProfileLink.addEventListener('click', () => {
@@ -431,20 +440,6 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 					<ul class="profile__list_rented-books">
 						<li class="item__list_book">The Last Queen, Clive Irving</li>
 						<li class="item__list_book">Dominicana, Angie Cruz</li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
-						<li class="item__list_book"></li>
 					</ul>
 				</div>
 				<span class="profile__modal_card-number">
@@ -497,8 +492,13 @@ if (localStorage.getItem('userSubscription') === 'true' && localStorage.getItem(
 			profileBooksNumber.forEach(el => {
 				el.textContent = localStorage.getItem('userOwnBooks');
 			});
-			const booksTitleNames = document.querySelectorAll('.book-title-name');
-			const itemListBooks = document.querySelectorAll('.item__list_book');
+			// const booksTitleNames = document.querySelectorAll('.book-title-name');
+			// const itemListBooks = document.querySelector('.profile__list_rented-books');
+			// booksTitleNames.forEach(book => {
+			// 	itemListBooks.innerHTML = `
+			// 	<li class="item__list_book">${book.textContent}</li>
+			// 	`
+			// });
 			// itemListBooks.forEach(el => {
 			// 	el.textContent = booksTitleNames.forEach(e => {
 			// 		console.log(e.value);
@@ -561,9 +561,6 @@ if (localStorage.getItem('userAuth') === 'true') {
 	})
 };
 
-if (location.reload) {
-	localStorage.setItem('userOwnBooks', 0);
-};
 
 //
 // получаем форму авторизации
@@ -582,7 +579,7 @@ const autPassError = document.querySelector('.error-text-pass');
 
 // обработка клика по кнопке submit формы авторизации 
 loginForm.addEventListener('submit', (e) => {
-	// e.stopPropagation();
+
 	e.preventDefault();
 	// получаем введенные значения инпут
 	let loginNameValue = loginNameInp.value.replace(/\s/g, '');
@@ -647,8 +644,6 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 	const cardBtn = document.querySelector('.button-check');
 
 
-	console.log(localStorage.getItem('cardNumber'));
-
 	// отменяем дефолтное поведение кнопки submit
 	cardFindForm.addEventListener('submit', (e) => {
 		e.preventDefault();
@@ -658,7 +653,6 @@ if (localStorage.getItem('userReg') === 'true' && localStorage.getItem('userAuth
 
 		let cardNameValue = cardNameInp.value.replace(/(^|\s)\S/g, function (x) { return x.toUpperCase() });
 		let cardNumberValue = cardNumberInp.value.toUpperCase();
-		console.log(cardNumberValue);
 		let cardValidationError = 0;
 
 		textNameError.textContent = '';
