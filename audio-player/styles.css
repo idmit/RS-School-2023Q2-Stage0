@@ -1,0 +1,56 @@
+* {
+	box-sizing: border-box;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 1440px;
+	max-height: 100vh;
+	font-family: "Space Grotesk", sans-serif;
+}
+
+.header {
+	width: 100%;
+	min-height: 10vh;
+	text-align: center;
+	background-color: #101010;
+	color: white;
+}
+
+.main {
+	width: 100%;
+	margin: 0 auto;
+	min-height: 80vh;
+	background-color: #1E1E1E;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(assets/img/bg8.jpg);
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	min-height: 10vh;
+	background-color: #101010;
+	color: white;
+	padding: 0 20px;
+}
+
+.footer-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 22px;
+}
+
+.footer-link {
+	color: white;
+	text-decoration: none;
+	/* font-weight: bold; */
+}
+
+/* .bold-text {
+	font-weight: bold;
+} */
