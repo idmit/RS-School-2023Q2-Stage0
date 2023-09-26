@@ -143,6 +143,7 @@ function getTime () {
 	durationSongTime.textContent = durationMin + ':' + durationSec;
 }
 
+// при загрузке песни устанавливаем время
 audio.addEventListener('canplaythrough', () => {
 	getTime();
 });
@@ -162,6 +163,5 @@ progressBar.addEventListener('click', setProgress);
 
 // когда трек закончится, автоматически включится следующий
 audio.addEventListener('ended', nextSong); 
-
 
 
