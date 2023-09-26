@@ -1,0 +1,87 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "JetBrains Mono", sans-serif;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	height: 10vh;
+	
+}
+
+.form {
+	position: relative;
+}
+
+.header__title {
+	color: #413e3e;
+}
+
+.form__button-search {
+	position: absolute;
+	top: 11px;
+	left: 15px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.form__button-search:hover .button-search__stroke {
+	stroke: black;
+	transition: all 0.5s;
+}
+
+.form__input {
+	padding: 10px 45px;
+	width: 350px;
+	background-color: #EEEEEE;
+	border-radius: 25px;
+	border: 1px solid #EEEEEE;
+	outline: none;
+	transition: all 0.3s;
+	font-size: 18px;
+}
+
+.form__input:focus {
+	background-color: #ffffff;
+	border: 1px solid #dbd6d6;
+}
+
+.form__input:hover {
+	border: 1px solid #dbd6d6;
+}
+
+.wrapper {
+	max-width: 1440px;
+	width: 100%;
+	height: 100%;
+	padding: 30px 60px;
+	background-color: #f1eeee;
+}
+
+.image-card-box {
+	position: relative;
+}
+
+.image__cover--dark {
+	position: absolute;
+	background-color: black;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: all 0.3s;
+}
+
+.image__cover--dark:hover {
+	opacity: 0.1;
+}

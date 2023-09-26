@@ -10,8 +10,26 @@
 	<title>Image-galery</title>
 </head>
 <body>
-	<header class="header"></header>
-	<main class="main"></main>
+	<header class="header">
+		<h1 class="header__title">Image-galery API</h1>
+		<form class="form">
+			<button class="form__button-search">
+				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><g class="button-search__stroke" fill="none" stroke="gray" stroke-linejoin="round" stroke-width="4"><path d="M21 38c9.389 0 17-7.611 17-17S30.389 4 21 4S4 11.611 4 21s7.611 17 17 17Z"/><path stroke-linecap="round" d="M26.657 14.343A7.975 7.975 0 0 0 21 12a7.975 7.975 0 0 0-5.657 2.343m17.879 18.879l8.485 8.485"/></g></svg>
+			</button>
+			<input type="text" class="form__input" placeholder="search image">
+		</form>
+	</header>
+	<main class="main">
+		<div class="wrapper">
+			<div class="images-box">
+				<div class="image-card"></div>
+			</div>
+			<div class="image-card-box">
+				<img class="image-card__photo" src="https://images.unsplash.com/photo-1646145927270-6e2c695d8e4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=600&q=60">
+				<div class="image__cover--dark"></div>
+			</div>
+		</div>
+	</main>
 	<footer class="footer"></footer>
 	<script src="index.js"></script>
 </body>
