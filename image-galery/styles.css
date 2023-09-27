@@ -5,6 +5,8 @@
 }
 
 body {
+	/* display: flex;
+	flex-direction: column; */
 	font-family: "JetBrains Mono", sans-serif;
 }
 
@@ -12,17 +14,21 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: sticky;
+	top: 0;
+	left: 0;
 	padding: 20px;
 	height: 10vh;
-	
-}
-
-.form {
-	position: relative;
+	background-color: #ffffff;
+	z-index: 10;
 }
 
 .header__title {
 	color: #413e3e;
+}
+
+.form {
+	position: relative;
 }
 
 .form__button-search {
@@ -48,6 +54,7 @@ body {
 	outline: none;
 	transition: all 0.3s;
 	font-size: 18px;
+	font-family: "JetBrains Mono", sans-serif;
 }
 
 .form__input:focus {
@@ -59,16 +66,96 @@ body {
 	border: 1px solid #dbd6d6;
 }
 
+.form__button-cross {
+	position: absolute;
+	top: 11px;
+	right: 15px;
+	width: 24px;
+	height: 24px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	opacity: 0;
+	transition: 0.3s all;
+}
+
+.form__cross-fill {
+	fill: gray;
+}
+
+.form__button-cross:hover .form__cross-fill {
+	fill: black;
+}
+
+.form__button-cross:hover {
+	transform: rotate(90deg);
+}
+
+.button--active {
+	opacity: 1;
+}
+
 .wrapper {
 	max-width: 1440px;
 	width: 100%;
 	height: 100%;
 	padding: 30px 60px;
-	background-color: #f1eeee;
+	background-color: #EEEEEE;
 }
 
-.image-card-box {
+.images-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+}
+
+.image-card {
+	width: calc((100% - 40px) / 3);
+}
+
+.image__cover {
 	position: relative;
+	height: 300px;
+}
+
+.image-card__photo {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.image__title {
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+	color: white;
+	opacity: 0;
+	transition: all 0.3s;
+	z-index: 20;
+}
+
+.image__cover:hover .image__title, 
+.image__cover:hover .image__likes {
+	opacity: 1;
+}
+
+.image__likes {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+	color: white;
+	opacity: 0;
+	transition: 0.3s all;
+	z-index: 20;
+}
+
+.image__cover--dark:hover {
+	opacity: 0.2;
 }
 
 .image__cover--dark {
@@ -80,8 +167,33 @@ body {
 	height: 100%;
 	opacity: 0;
 	transition: all 0.3s;
+	border-radius: 10px;
 }
 
-.image__cover--dark:hover {
-	opacity: 0.1;
+.footer-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	height: 10vh;
+	background-color: #ffffff;
+	font-size: 22px;
+}
+
+.footer__text, .footer__link {
+	font-weight: bold;
+	color: #413e3e;
+}
+
+.footer__link {
+	text-decoration: none;
+	transition: 0.3s all;
+}
+
+.footer__link:hover {
+	transform: scale(1.1);
+}
+
+.button {
+	fill: #413e3e;
 }
