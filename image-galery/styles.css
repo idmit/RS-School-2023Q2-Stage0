@@ -25,6 +25,11 @@ body {
 
 .header__title {
 	color: #413e3e;
+	cursor: pointer;
+}
+
+.header__title:hover {
+	color: black;
 }
 
 .form {

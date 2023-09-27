@@ -1,6 +1,7 @@
 const API_KEY = 'teLMqnqHTZxZpqGQ1f8hQwV9e0JxPRfNnrOw9eWvayU';
 const API_URL_PHOTOS = 'https://api.unsplash.com/photos/random';
 const API_URL_SEARCH = 'https://api.unsplash.com/search/photos?query=';
+const randomImgUrl = `${API_URL_PHOTOS}?client_id=${API_KEY}&count=21`;
 
 const imagesBox = document.querySelector('.images-box');
 
@@ -9,9 +10,10 @@ const likesNum = document.querySelector('.likes__number');
 const img = document.querySelector('image-card__photo');
 const btnSearch = document.querySelector('.form__button-search');
 const btnCross = document.querySelector('.form__button-cross');
+const headerTitle = document.querySelector('.header__title');
 
 
-getPhotos(`${API_URL_PHOTOS}?client_id=${API_KEY}&count=21`);
+getPhotos(randomImgUrl);
 async function getPhotos(url) {
 	try {
 		const response = await fetch(url);
@@ -100,4 +102,8 @@ btnSearch.addEventListener('click', () => {
 		searchInp.value = '';
 	})
 
+
+	headerTitle.addEventListener('click', () => {
+		getPhotos(randomImgUrl);
+	});
 
