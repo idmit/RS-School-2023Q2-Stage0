@@ -47,7 +47,9 @@ function showPhotos(data) {
 					<div class="image__cover--dark"></div>
 				</div>
 			`;
+			imgEl.addEventListener('click', () => openModal(img));
 			imagesBox.appendChild(imgEl);
+			
 		});
 	} else (
 		data.forEach(img => {
@@ -67,6 +69,7 @@ function showPhotos(data) {
 					<div class="image__cover--dark"></div>
 				</div>
 			`;
+			imgEl.addEventListener('click', () => openModal(img));
 			imagesBox.appendChild(imgEl);
 		})
 	)
@@ -75,6 +78,7 @@ function showPhotos(data) {
 
 const form = document.querySelector('.form');
 const searchInp = document.querySelector('.form__input');
+
 
 
 form.addEventListener('submit', (e) => {
@@ -96,14 +100,56 @@ btnSearch.addEventListener('click', () => {
 	}
 })
 
-
 	btnCross.addEventListener('click', () => {
 		btnCross.classList.remove('button--active');
 		searchInp.value = '';
 	})
 
-
 	headerTitle.addEventListener('click', () => {
+		searchInp.value = '';
+		btnCross.classList.remove('button--active');
 		getPhotos(randomImgUrl);
 	});
 
+
+	// modal start 
+
+	const modalEl = document.querySelector('.modal');
+	
+	async function openModal(img) {
+		modalEl.classList.add('modal--show');
+		modalEl.innerHTML = `
+			<div class="modal__card">
+				<img class="modal__img-backdrop" alt="${img.alt_description}" src="${img.urls.regular}">
+				<div class="image__info">
+					<div class="image__title image__title-modal">${img.user.name}</div>
+					<div class="image__likes image__likes-modal">
+						<img src="heart-broken.svg">
+						<span class="likes__number">${img.likes}</span>
+					</div>
+				</div>
+				<button class="modal__button-cross">
+						<svg class="modal__cross" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path class="modal__cross-fill" fill-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" clip-rule="evenodd"/></svg>
+					</button>
+			</div>
+		`
+		const btnClose = document.querySelector('.modal__button-cross');
+		btnClose.addEventListener('click', closeModal);
+	}
+
+	function closeModal() {
+		modalEl.classList.toggle('modal--show');
+	}
+
+	window.addEventListener('click', (e) => {
+		if(e.target === modalEl) {
+			closeModal();
+		}
+	})
+	
+	window.addEventListener('keydown', (e) => {
+		if (e.keyCode === 27) {
+			closeModal();
+		}
+	})
+	// imagesBox.addEventListener('click', openModal);
