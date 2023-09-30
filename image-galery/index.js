@@ -11,47 +11,40 @@ const img = document.querySelector('image-card__photo');
 const btnSearch = document.querySelector('.form__button-search');
 const btnCross = document.querySelector('.form__button-cross');
 const headerTitle = document.querySelector('.header__title');
+const loadMoreBtn = document.querySelector('.load-more__btn');
+
 
 
 getPhotos(randomImgUrl);
 async function getPhotos(url) {
 	try {
+		loadMoreBtn.innerText = 'Loading...';
+		loadMoreBtn.classList.add('disabled');
 		const response = await fetch(url);
 		const respData = await response.json();
+		if (!Array.isArray(respData)) {
+			const arrayRespData = respData.results;
+			showPhotos(arrayRespData);
+			loadMoreBtn.innerText = 'Load More';
+			loadMoreBtn.classList.remove('disabled');
+		} else {
+			showPhotos(respData);
+			loadMoreBtn.innerText = 'Load More';
+			loadMoreBtn.classList.remove('disabled');
+		}
 		console.log(respData);
-		showPhotos(respData);
 	}
 	catch(err) {
 		console.error(err);
+		imagesBox.innerText = 'Search limit consumed. Try again in an hour.';
+		imagesBox.style.color = 'red';
+		loadMoreBtn.innerText = 'Load More';
+		loadMoreBtn.classList.add('disabled');
 	}
-	
 }
 
-function showPhotos(data) {
-	imagesBox.innerHTML = '';
-	if (!Array.isArray(data)) {
-		data.results.forEach(img => {
-			const imgEl = document.createElement('div');
-			imgEl.classList.add('image-card');
-			imgEl.innerHTML = `
-				<div class="image__cover">
-					<img src = "${img.urls.regular}" class="image-card__photo" alt ="${img.alt_description}">
-					<div class="image__info">
-						<div class="image__title">${img.user.name}</div>
-						<div class="image__likes">
-							<img src="heart-broken.svg">
-							<span class="likes__number">${img.likes}</span>
-						</div>
-					</div>
-					
-					<div class="image__cover--dark"></div>
-				</div>
-			`;
-			imgEl.addEventListener('click', () => openModal(img));
-			imagesBox.appendChild(imgEl);
-			
-		});
-	} else (
+ function showPhotos(data) {
+	// imagesBox.innerHTML = '';
 		data.forEach(img => {
 			const imgEl = document.createElement('div');
 			imgEl.classList.add('image-card');
@@ -72,40 +65,45 @@ function showPhotos(data) {
 			imgEl.addEventListener('click', () => openModal(img));
 			imagesBox.appendChild(imgEl);
 		})
-	)
-	
 }
 
 const form = document.querySelector('.form');
 const searchInp = document.querySelector('.form__input');
 
 
-
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
-	const apiSearchUrl = `${API_URL_SEARCH}${searchInp.value}&client_id=${API_KEY}&per_page=21`;
-	console.log(apiSearchUrl);
-	if (searchInp.value) {
-		getPhotos(apiSearchUrl);
-		btnCross.classList.add('button--active');
-	}
+	searchPhoto();
 })
 
-btnSearch.addEventListener('click', () => {
-	const apiSearchUrl = `${API_URL_SEARCH}${searchInp.value}&client_id=${API_KEY}&per_page=21`;
+btnSearch.addEventListener('click', searchPhoto);
+
+function searchPhoto() {
+	page = 1;
+	imagesBox.innerHTML = '';
+	const apiSearchUrl = `${API_URL_SEARCH}${searchInp.value}&client_id=${API_KEY}&per_page=21&page=${page}`;
 	console.log(apiSearchUrl);
 	if (searchInp.value) {
 		getPhotos(apiSearchUrl);
 		btnCross.classList.add('button--active');
 	}
-})
+}
 
 	btnCross.addEventListener('click', () => {
 		btnCross.classList.remove('button--active');
 		searchInp.value = '';
 	})
 
+	searchInp.addEventListener('input', () => {
+		if (searchInp.value) {
+			btnCross.classList.add('button--active');
+		} else if (!searchInp.value) {
+			btnCross.classList.remove('button--active')
+		}
+	})
+
 	headerTitle.addEventListener('click', () => {
+		imagesBox.innerHTML = '';
 		searchInp.value = '';
 		btnCross.classList.remove('button--active');
 		getPhotos(randomImgUrl);
@@ -116,12 +114,13 @@ btnSearch.addEventListener('click', () => {
 
 	const modalEl = document.querySelector('.modal');
 	
-	async function openModal(img) {
-		modalEl.classList.add('modal--show');
+	function openModal(img) {
+		modalEl.classList.toggle('modal--show');
+		// document.body.classList.add('stop--scrolling');
 		modalEl.innerHTML = `
 			<div class="modal__card">
 				<img class="modal__img-backdrop" alt="${img.alt_description}" src="${img.urls.regular}">
-				<div class="image__info">
+				<div class="modal__image-info">
 					<div class="image__title image__title-modal">${img.user.name}</div>
 					<div class="image__likes image__likes-modal">
 						<img src="heart-broken.svg">
@@ -139,6 +138,7 @@ btnSearch.addEventListener('click', () => {
 
 	function closeModal() {
 		modalEl.classList.toggle('modal--show');
+		// document.body.classList.toggle('stop--scrolling')
 	}
 
 	window.addEventListener('click', (e) => {
@@ -152,4 +152,22 @@ btnSearch.addEventListener('click', () => {
 			closeModal();
 		}
 	})
-	// imagesBox.addEventListener('click', openModal);
+	
+
+	const pageNumb = document.querySelector('.page_number');
+	const btnPrev = document.querySelector('.btn_prev');
+	const btnNext = document.querySelector('.btn_next');
+
+	let page = 1;
+
+	loadMoreBtn.addEventListener('click', () => {
+		console.log(searchInp.value);
+		if (!searchInp.value) {
+			getPhotos(randomImgUrl);
+		} else {
+			page++;
+			getPhotos(`${API_URL_SEARCH}${searchInp.value}&client_id=${API_KEY}&per_page=21&page=${page}`);
+			console.log(page);
+		}
+	})
+	
