@@ -14,7 +14,6 @@ const headerTitle = document.querySelector('.header__title');
 const loadMoreBtn = document.querySelector('.load-more__btn');
 
 
-
 getPhotos(randomImgUrl);
 async function getPhotos(url) {
 	try {
@@ -32,7 +31,6 @@ async function getPhotos(url) {
 			loadMoreBtn.innerText = 'Load More';
 			loadMoreBtn.classList.remove('disabled');
 		}
-		console.log(respData);
 	}
 	catch(err) {
 		console.error(err);
@@ -44,7 +42,6 @@ async function getPhotos(url) {
 }
 
  function showPhotos(data) {
-	// imagesBox.innerHTML = '';
 		data.forEach(img => {
 			const imgEl = document.createElement('div');
 			imgEl.classList.add('image-card');
@@ -109,14 +106,13 @@ function searchPhoto() {
 		getPhotos(randomImgUrl);
 	});
 
-
 	// modal start 
 
 	const modalEl = document.querySelector('.modal');
 	
 	function openModal(img) {
 		modalEl.classList.toggle('modal--show');
-		// document.body.classList.add('stop--scrolling');
+		document.body.classList.add('stop--scrolling');
 		modalEl.innerHTML = `
 			<div class="modal__card">
 				<img class="modal__img-backdrop" alt="${img.alt_description}" src="${img.urls.regular}">
@@ -138,7 +134,7 @@ function searchPhoto() {
 
 	function closeModal() {
 		modalEl.classList.toggle('modal--show');
-		// document.body.classList.toggle('stop--scrolling')
+		document.body.classList.toggle('stop--scrolling')
 	}
 
 	window.addEventListener('click', (e) => {
@@ -153,7 +149,9 @@ function searchPhoto() {
 		}
 	})
 	
+	// modal end
 
+	// load more button
 	const pageNumb = document.querySelector('.page_number');
 	const btnPrev = document.querySelector('.btn_prev');
 	const btnNext = document.querySelector('.btn_next');
@@ -161,13 +159,11 @@ function searchPhoto() {
 	let page = 1;
 
 	loadMoreBtn.addEventListener('click', () => {
-		console.log(searchInp.value);
 		if (!searchInp.value) {
 			getPhotos(randomImgUrl);
 		} else {
 			page++;
 			getPhotos(`${API_URL_SEARCH}${searchInp.value}&client_id=${API_KEY}&per_page=21&page=${page}`);
-			console.log(page);
 		}
 	})
 	
