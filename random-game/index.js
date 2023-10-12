@@ -123,6 +123,71 @@ Snake.prototype.draw = function () {
 	})
 }
 
+Snake.prototype.move = function () {
+	const head = this.segments[0];
+	let newHead;
+
+	this.direction = this.nextDirection;
+
+	if (this.direction === "right") {
+		newHead = new Block(head.col + 1, head.row);
+	} else if (this.direction === "down") {
+		newHead = new Block(head.col, head.row + 1);
+	} else if (this.direction === "left") {
+		newHead = new Block(head.col - 1, head.row);
+	} else if (this.direction === "up") {
+		newHead = new Block(head.col, head.row - 1);
+	}
+
+	if (this.checkCollision(newHead)) {
+		gameOver();
+		return;
+	}
+
+	this.segments.unshift(newHead);
+
+	
+	if(newHead.equal(food.position)) {
+		score++;
+		highScore = score >= highScore ? score : highScore;
+		localStorage.setItem('high-score', highScore);
+		food.move(this.segments);
+	} else {
+		this.segments.pop();
+	}
+}
+
+Snake.prototype.checkCollision = function (head) {
+	const leftCollision = (head.col === 0);
+	const topCollision = (head.row === 0);
+	const rightCollision = (head.col === widthInBlocks - 1);
+	const bottomCollision = (head.row === heightInBlocks - 1);
+	wallCollision = leftCollision || topCollision ||
+	rightCollision || bottomCollision;
+	selfCollision = false;
+ 
+	for (let i = 0; i < this.segments.length; i++) {
+	if (head.equal(this.segments[i])) {
+	selfCollision = true;
+	}
+	}
+	return wallCollision || selfCollision;
+}
+
+Snake.prototype.setDirection = function (newDirection) {
+	if (this.direction === 'up' && newDirection === 'down') {
+		return;
+	} else if (this.direction === 'right' && newDirection === 'left') {
+		return;
+	} else if (this.direction === 'down' && newDirection === 'up') {
+		return;
+	} else if (this.direction === 'left' && newDirection === 'right') {
+		return;
+	}
+
+	this.nextDirection = newDirection;
+}
+
 const Food = function () {
 	this.position = new Block(10, 10);
 };
