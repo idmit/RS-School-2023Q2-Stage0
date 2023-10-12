@@ -148,7 +148,6 @@ Snake.prototype.draw = function () {
 		} else {
 			el.drawSquare('rgb(196, 74, 210)');
 		}
-		
 	})
 }
 
@@ -175,7 +174,6 @@ Snake.prototype.move = function () {
 
 	this.segments.unshift(newHead);
 
-	
 	if(newHead.equal(food.position)) {
 		score++;
 		highScore = score >= highScore ? score : highScore;
@@ -196,9 +194,9 @@ Snake.prototype.checkCollision = function (head) {
 	selfCollision = false;
  
 	for (let i = 0; i < this.segments.length; i++) {
-	if (head.equal(this.segments[i])) {
-	selfCollision = true;
-	}
+		if (head.equal(this.segments[i])) {
+			selfCollision = true;
+		}
 	}
 	return wallCollision || selfCollision;
 }
@@ -256,9 +254,6 @@ function startGame () {
 
 	startGame ()
 
-
-
-
 const directions = {
 	37: 'left',
 	38: 'up',
@@ -276,7 +271,6 @@ function checkKeydown() {
 }
 
 checkKeydown();
-
 
 btn.addEventListener('click', () => {
 	btn.classList.remove('btn--active')
