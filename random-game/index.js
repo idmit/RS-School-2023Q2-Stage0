@@ -281,7 +281,7 @@ checkKeydown();
 btn.addEventListener('click', () => {
 	btn.classList.remove('btn--active')
 	snake = new Snake();
-	apple = new Apple();
+	food = new Food();
 	score = 0;
 
 	gameOverTitle.textContent = '';

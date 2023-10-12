@@ -41,6 +41,48 @@ body {
 	color: white;
 }
 
+.game-over {
+	position: absolute;
+	top: 190px;
+	left: 80px;
+	font-size: 36px;
+	text-align: center;
+	color: white;
+	width: 340px;
+}
+
+.btn-div {
+	position: absolute;
+	top: 270px;
+	left: 100px;
+	overflow: hidden;
+	width: 300px;
+	margin: 40px auto 0;
+	color: #c6c6c6dd;
+}
+
+.btn {
+	display: none;
+	background-color: rgb(196, 74, 210);
+	padding: 10px;
+	color: white;
+	font-size: 20px;
+	font-family: "JetBrains Mono";
+	cursor: pointer;
+	border: none;
+	transition: 0.3s all;
+	width: 300px;
+}
+
+.btn:hover {
+	transform: scale(1.1);
+	overflow: hidden;
+}
+
+.btn--active {
+	display: block;
+}
+
 .main {
 	display: flex;
 	align-items: center;
@@ -105,4 +147,28 @@ body {
 	padding: 0 10px;
 	color: white;
 	font-size: 20px;
+}
+
+.footer-link {
+	color: white;
+	text-decoration: none;
+	transition: 0.3s all;
+}
+
+.logo-rss {
+	fill: white;
+	transition: 0.3s all;
+}
+
+.footer-link:hover {
+	color: rgb(196, 74, 210);
+	transform: scale(1.1);
+}
+
+.footer-link:hover .logo-rss {
+	fill: rgb(196, 74, 210);
+}
+
+.footer-link:first-of-type {
+	margin-left: 70px;
 }
