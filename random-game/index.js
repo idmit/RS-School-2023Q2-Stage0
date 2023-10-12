@@ -18,7 +18,21 @@ const gameOverTitle = document.querySelector('.game-over');
 const highScoreTitle = document.querySelector('.high-score');
 const btn = document.querySelector('.btn');
 
+let resetInt;
 
+const scoreItems = document.querySelectorAll('.score-item');
+
+const games = JSON.parse(localStorage.getItem('prev-games')) || [];
+
+scoreItems.forEach((el) => {
+	el.textContent = 'Total score : 0';
+})
+
+if (JSON.parse(localStorage.getItem('prev-games')) !== undefined) {
+		for (let i = 0; i < games.length; i++) {
+			scoreItems[i].innerHTML = `<b>Total score : ${games[i]}</b>`
+	}
+} 
 
 function drawBorder() {
 	ctx.fillStyle = '#413e3e';
@@ -49,6 +63,11 @@ function drawGrid() {
 }
 
 drawGrid();
+
+function drawScore() {
+	scoreTitle.textContent = `Score: ${score}`
+	highScoreTitle.textContent = `High score: ${highScore}`
+}
 
 const circle = function (x, y, radius, fill) {
 	ctx.beginPath();
