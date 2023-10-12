@@ -29,6 +29,25 @@ body {
 	height: 32px;
 }
 
+.game-board {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.score {
+	display: flex;
+	justify-content: space-between;
+	color: white;
+}
+
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 80%;
+	height: 80vh;
+}
 
 
 

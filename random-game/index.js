@@ -18,6 +18,8 @@ const gameOverTitle = document.querySelector('.game-over');
 const highScoreTitle = document.querySelector('.high-score');
 const btn = document.querySelector('.btn');
 
+
+
 function drawBorder() {
 	ctx.fillStyle = '#413e3e';
 	ctx.fillRect(0, 0, width, blockSize);
@@ -108,4 +110,28 @@ const Food = function () {
 
 Food.prototype.draw = function () {
 	this.position.drawCircle('#ff0044');
+}
+
+function drawScore() {
+	scoreTitle.textContent = `Score: ${score}`
+	highScoreTitle.textContent = `High score: ${highScore}`
+}
+
+let snake = new Snake();
+let food = new Food();
+
+const directions = {
+	37: 'left',
+	38: 'up',
+	39: 'right',
+	40: 'down'
+}
+
+function checkKeydown() {
+	body.addEventListener('keydown', (event) => {
+		let newDirection = directions[event.keyCode];
+		if (newDirection !== undefined) {
+			snake.setDirection(newDirection);
+		}
+	})
 }
