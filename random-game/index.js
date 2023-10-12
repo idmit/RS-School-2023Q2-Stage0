@@ -47,3 +47,65 @@ function drawGrid() {
 }
 
 drawGrid();
+
+const circle = function (x, y, radius, fill) {
+	ctx.beginPath();
+	ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+	if (fill) {
+		ctx.fill();
+	} else {
+		ctx.stroke();
+	}
+}
+
+const Block = function (col, row) {
+	this.col = col;
+	this.row = row;
+}
+
+Block.prototype.drawSquare = function (color) {
+	const x = this.col * blockSize;
+	const y = this.row * blockSize;
+	ctx.fillStyle = color;
+	ctx.fillRect(x, y, blockSize, blockSize);
+}
+
+Block.prototype.drawCircle = function (color) {
+	const centerX = this.col * blockSize + blockSize / 2;
+	const centerY = this.row * blockSize + blockSize / 2;
+	ctx.fillStyle = color;
+	circle(centerX, centerY, blockSize / 2, true);
+}
+
+Block.prototype.equal = function (otherBlock) {
+	return this.col === otherBlock.col && this.row === otherBlock.row;
+}
+
+const Snake = function() {
+	this.segments = [
+		new Block(7, 5),
+		new Block(6, 5),
+		new Block(5, 5)
+	];
+	this.direction = 'right';
+	this.nextDirection = 'right';
+};
+
+Snake.prototype.draw = function () {
+	this.segments.forEach((el, index) =>{
+		if (index == 0) {
+			el.drawSquare('#efefef');
+		} else {
+			el.drawSquare('rgb(196, 74, 210)');
+		}
+		
+	})
+}
+
+const Food = function () {
+	this.position = new Block(10, 10);
+};
+
+Food.prototype.draw = function () {
+	this.position.drawCircle('#ff0044');
+}
