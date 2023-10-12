@@ -88,6 +88,13 @@ body {
 	border-radius: 10px;
 }
 
+.control-ms {
+	color: white;
+	text-align: center;
+	padding-bottom: 0;
+}
+
+
 .footer {
 	display: flex;
 	justify-content: space-between;

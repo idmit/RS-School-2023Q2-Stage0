@@ -61,8 +61,6 @@ function drawGrid() {
 	}
 }
 
-
-
 function drawScore() {
 	scoreTitle.textContent = `Score: ${score}`
 	highScoreTitle.textContent = `High score: ${highScore}`
@@ -241,6 +239,9 @@ Food.prototype.move = function (snakeSegments) {
 	}
 }
 
+let snake = new Snake();
+let food = new Food();
+
 function startGame () {
 	ctx.clearRect(0, 0, width, height);
 	drawScore();
@@ -255,13 +256,8 @@ function startGame () {
 
 	startGame ()
 
-function drawScore() {
-	scoreTitle.textContent = `Score: ${score}`
-	highScoreTitle.textContent = `High score: ${highScore}`
-}
 
-let snake = new Snake();
-let food = new Food();
+
 
 const directions = {
 	37: 'left',
@@ -278,3 +274,19 @@ function checkKeydown() {
 		}
 	})
 }
+
+checkKeydown();
+
+
+btn.addEventListener('click', () => {
+	btn.classList.remove('btn--active')
+	snake = new Snake();
+	apple = new Apple();
+	score = 0;
+
+	gameOverTitle.textContent = '';
+	resetInt = setInterval(startGame, 130);
+	checkKeydown();
+
+	return resetInt;
+})
