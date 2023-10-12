@@ -196,6 +196,20 @@ Food.prototype.draw = function () {
 	this.position.drawCircle('#ff0044');
 }
 
+Food.prototype.move = function (snakeSegments) {
+	const randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+	const randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
+	this.position = new Block(randomCol, randomRow);
+	let index = snakeSegments.length - 1;
+	while (index >= 0) {
+		if (this.position.equal(snakeSegments[index])) {
+			this.move(snakeSegments);
+			return;
+		}
+		index--;
+	}
+}
+
 function drawScore() {
 	scoreTitle.textContent = `Score: ${score}`
 	highScoreTitle.textContent = `High score: ${highScore}`
