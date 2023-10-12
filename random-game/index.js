@@ -42,7 +42,6 @@ function drawBorder() {
 	ctx.fillRect(width - blockSize, 0, blockSize, height);
 }
 
-drawBorder();
 
 function drawGrid() {
 	ctx.lineWidth = 1.1;
@@ -62,11 +61,43 @@ function drawGrid() {
 	}
 }
 
-drawGrid();
+
 
 function drawScore() {
 	scoreTitle.textContent = `Score: ${score}`
 	highScoreTitle.textContent = `High score: ${highScore}`
+}
+
+function gameOver() {
+	clearInterval(intervalId);
+	clearInterval(resetInt);
+
+	ctx.clearRect(0, 0, width, height);
+	setScoreResult();
+	
+	snake.segments.forEach((el) => {
+		el.col = 0;
+		el.row = 0;
+	})
+	food.position.col = 0;
+	food.position.row = 0;
+	btn.classList.add('btn--active');
+	ctx.fillStyle = '#232323';
+	ctx.fillRect(0, 0, width, height);
+	gameOverTitle.innerHTML = `<p>Game over! <br>Your score : ${score}</p>`;
+}
+
+function setScoreResult () {
+	if (games.length >= 10) {
+		games.pop()
+		games.unshift(score);
+	} else {
+		games.unshift(score);
+	}
+	localStorage.setItem('prev-games', JSON.stringify(games));
+	for (let i = 0; i < games.length; i++) {
+		scoreItems[i].innerHTML = `<b>Total score : ${games[i]}</b>`
+	}
 }
 
 const circle = function (x, y, radius, fill) {
@@ -209,6 +240,20 @@ Food.prototype.move = function (snakeSegments) {
 		index--;
 	}
 }
+
+function startGame () {
+	ctx.clearRect(0, 0, width, height);
+	drawScore();
+	drawGrid();
+	snake.move();
+	snake.draw();
+	food.draw();
+	drawBorder();
+}
+
+	let intervalId = setInterval(startGame, 130);
+
+	startGame ()
 
 function drawScore() {
 	scoreTitle.textContent = `Score: ${score}`
